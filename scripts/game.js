@@ -166,6 +166,19 @@ function moveLeft(x, y) {
 
 }
 
+function moveUp(x, y) {
+    clear();
+    console.log(x, y)
+    console.log('layout[x][y]: ', layout[x][y]);
+    layout[x][y] = 4;
+    pacmanx = x - 1;
+    pacmany = y;
+
+    layout[x - 1][y] = 5;
+    buildLayout();
+
+}
+
 
 
 buildLayout();
