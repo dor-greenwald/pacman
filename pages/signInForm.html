@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignIn-Form</title>
+</head>
+<body>
+    <script src="./../scripts/signInLocalStorage.js"></script>
+
+
+    <form id ="MySignInForm">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="textbox" minlength="2" maxlength="20" placeholder="name">
+        </div>
+        <div>
+            <label for="password">password</label>
+            <input type="password" name="password" id="password" class="textbox" minlength="7" maxlength="20">
+        </div>
+        <div>
+            <label for="email">email</label>
+            <input type="email" name="email" class="textbox" id="email" placeholder="email">
+        </div>
+        <div>
+            <input id="submit" type="submit" value="Submit">
+        </div>
+    </form>
+</body>
+</html>
