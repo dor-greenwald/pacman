@@ -3,6 +3,7 @@ $board-size: 28;
 $background: rgb(0, 0, 77);
 $wall: rgb(0, 106, 245);
 
+
 * {
     padding: 0;
     margin: 0;
@@ -14,6 +15,18 @@ $wall: rgb(0, 106, 245);
 body {
     background-color: $background;
 }
+
+header {
+    display: flex;
+
+    #scoreTxt {
+        margin: 20px;
+        font-size: 1.5rem;
+        color: white;
+
+    }
+}
+
 
 #game {
     display: grid;
@@ -32,8 +45,8 @@ body {
 
 
     .yellow-circle {
-        width: 0.5vw;
-        height: 0.5vw;
+        width: 5px;
+        height: 5px;
         margin: auto;
     }
 

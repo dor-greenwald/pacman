@@ -30,6 +30,7 @@ const layout = [
 ]
 
 const len = layout.length;
+let score = 0;
 let pacmanx = 20;
 let pacmany = 12;
 // document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
@@ -118,6 +119,7 @@ function buildCherry(i) {
 function buildPacman(x, y) {
     let pacman = document.createElement("img");
     pacman.src = "./../media/images/pacman-player.png";
+    pacman.id = "pacman";
     document.getElementById("game").appendChild(pacman);
     // empty.classList.add("empty");
 
@@ -158,12 +160,37 @@ function move(objDigit, x, y, addx, addy) {
     objx = x + addx;
     objy = y + addy;
 
+    //check if colided
+    switch (layout[objx, objy]) {
+        case 0:
+            addToScore(5);
+            break;
+
+        case 1:
+            objx = x;
+            objy = y;
+            break;
+
+        case 2:
+            hitGhost();
+            break;
+
+        case 3:
+            addToScore(100);
+            break;
+
+    }
+
     layout[objx][objy] = objDigit;
     buildLayout();
     return [objx, objy];
 }
 
-
+function addToScore(add) {
+    let scoreTxt = document.getElementById("scoreTxt");
+    score += add;
+    scoreTxt.innerHTML = "score: " + score;
+}
 
 
 
