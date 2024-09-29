@@ -5,9 +5,12 @@
 }
 
 body {
-  background: rgb(16, 112, 202);
+  background: rgb(56, 115, 243);
 }
-body img {
+body .title {
+  margin: 15% 0;
+}
+body .title img {
   width: 100%;
   height: 100%;
   padding: 0 10%;
@@ -23,23 +26,50 @@ body .buttonsContainer {
 body .buttonsContainer button {
   padding: 30px;
   width: 150px;
-  background-color: rgb(16, 112, 202);
-  border: 2px solid #96c8f7;
+  background-color: rgb(56, 115, 243);
+  color: white;
+  font-weight: bold;
+  border: 2px solid rgb(82, 186, 255);
   border-radius: 5px;
   font-size: 1.5rem;
+  box-shadow: 3px 5px 0px 0px #0b42ba;
 }
 body .buttonsContainer button:hover {
-  background-color: #96c8f7;
+  background-color: rgb(82, 186, 255);
 }
 body .buttonsContainer button#playBtn {
-  background-color: #96c8f7;
-  border-color: #0c569b;
-  color: #05213c;
+  background-color: rgb(82, 186, 255);
+  color: #08318a;
+  animation: none;
 }
+body .buttonsContainer button#playBtn:hover {
+  -webkit-animation-name: wiggle;
+  -webkit-animation-duration: 700ms;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-in-out;
+}
+@keyframes wiggle {
+  0% {
+    transform: rotate(10deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 @media only screen and (max-width: 750px) {
   body .buttonsContainer {
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1.5fr;
+    grid-template-rows: 1fr 1fr;
   }
   body .buttonsContainer #playBtn {
     grid-row: 2/3;

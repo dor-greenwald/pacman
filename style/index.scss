@@ -1,4 +1,6 @@
-$background-color: rgb(16, 112, 202);
+$background-color: rgb(56, 115, 243);
+$lighter-color: rgb(82, 186, 255);
+
 
 
 * {
@@ -10,11 +12,16 @@ $background-color: rgb(16, 112, 202);
 body {
     background: $background-color;
 
-    img {
-        width: 100%;
-        height: 100%;
-        padding: 0 10%;
+    .title {
+        margin: 15% 0;
+
+        img {
+            width: 100%;
+            height: 100%;
+            padding: 0 10%;
+        }
     }
+
 
     .buttonsContainer {
         padding: 0 5%;
@@ -29,25 +36,63 @@ body {
             padding: 30px;
             width: 150px;
             background-color: $background-color;
-            border: 2px solid lighten($background-color, 35%);
+            color: white;
+            font-weight: bold;
+            border: 2px solid $lighter-color;
             border-radius: 5px;
             font-size: 1.5rem;
+            box-shadow: 3px 5px 0px 0px darken($background-color, 20%);
 
             &:hover {
-                background-color: lighten($background-color, 35%);
+                background-color: $lighter-color;
             }
 
             &#playBtn {
-                background-color: lighten($background-color, 35%);
-                border-color: darken($background-color, 10%);
+                background-color: $lighter-color;
 
                 color: darken($background-color, 30%);
+                animation: none;
 
-                &:hover {}
+
+                &:hover {
+                    -webkit-animation-name: wiggle;
+                    -webkit-animation-duration: 700ms;
+                    -webkit-animation-iteration-count: 1;
+                    -webkit-animation-timing-function: ease-in-out;
+                }
+
+
+
+
+                @keyframes wiggle {
+                    0% {
+                        transform: rotate(10deg);
+                    }
+
+                    25% {
+                        transform: rotate(-10deg);
+                    }
+
+                    50% {
+                        transform: rotate(15deg);
+                    }
+
+                    75% {
+                        transform: rotate(-5deg);
+                    }
+
+                    100% {
+                        transform: rotate(0deg);
+                    }
+                }
             }
         }
     }
 }
+
+
+
+
 
 @media only screen and (max-width: 750px) {
     body {
@@ -55,7 +100,7 @@ body {
 
         .buttonsContainer {
             grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 1fr 1.5fr;
+            grid-template-rows: 1fr 1fr;
 
             #playBtn {
                 grid-row: 2/3;
