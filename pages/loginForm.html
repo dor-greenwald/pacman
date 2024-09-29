@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogIn-Form</title>
+    <link href = "../style/logInSignIn.css" rel="stylesheet">
 </head>
 <body>
     <script src="./../scripts/loginLocalStorage.js"></script>
 
-
-    <form id ="MyLoginForm">
+    <img  src ="../media/images/pacman-title.png">
+    <form id ="MyLoginForm" class="form-container">
         <div>
             <label for="name">Name</label>
             <input type="text" name="name" id="name" class="textbox" minlength="2" maxlength="20" placeholder="Enter your name">
         </div>
         <div>
             <label for="password">password</label>
-            <input type="password" name="password" id="password" class="textbox" minlength="7" maxlength="20">
+            <input type="password" name="password" id="password" class="textbox" minlength="7" maxlength="20" placeholder="password">
         </div>
         <div>
-            <input id="submit" type="submit" value="Submit">
+            <input id="submit" type="submit" value="Log in">
         </div>
     </form>
 </body>

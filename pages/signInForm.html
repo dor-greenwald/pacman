@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignIn-Form</title>
+    <link href = "../style/logInSignIn.css" rel="stylesheet">
+
 </head>
 <body>
     <script src="./../scripts/signInLocalStorage.js"></script>
 
-
-    <form id ="MySignInForm">
+    <img  src ="../media/images/pacman-title.png">
+<section>
+    <form id ="MySignInForm" class="form-container">
         <div>
             <label for="name">Name</label>
             <input type="text" name="name" id="name" class="textbox" minlength="2" maxlength="20" placeholder="name">
@@ -26,5 +29,6 @@
             <input id="submit" type="submit" value="Submit">
         </div>
     </form>
+</section>
 </body>
 </html>

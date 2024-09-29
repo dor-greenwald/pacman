@@ -1,23 +1,7 @@
 // Wait for the DOM to fully load
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('MySignInForm');
-/* LOAD SAVED DATA
-    // Load saved data from localStorage
-    const savedName = localStorage.getItem('name');
-    const savedEmail = localStorage.getItem('email');
-    const savedPass = localStorage.getItem('password');
 
-
-    if (savedName) {
-        document.getElementById('name').value = savedName;
-    }
-    if (savedEmail) {
-        document.getElementById('email').value = savedEmail;
-    }
-    if (savedPass) {
-        document.getElementById('password').value = savedPass;
-    }
- */
 
     // Add event listener for form submission
     form.addEventListener('submit', (event) => {
@@ -28,11 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const pass = document.getElementById('password').value;
         const email = document.getElementById('email').value;
 
-        // Store input values in localStorage
-        localStorage.setItem('name', name);
-        localStorage.setItem('password', pass);
-        localStorage.setItem('email', pass);
-
+        const userData = {
+            password: pass,
+            email:email
+            // Add other user-specific data here if needed
+        };
+        localStorage.setItem(name, JSON.stringify(userData));
 
         // Optional: Clear form after submission
         form.reset();

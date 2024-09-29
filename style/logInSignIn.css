@@ -1,0 +1,55 @@
+* {
+    background-color: rgb(16, 112, 202);
+}
+
+h1 {
+    text-align: center;
+    color: yellow
+}
+
+.textbox {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #555;
+    outline: none;
+
+}
+
+
+.textbox:focus {
+    background-color: lightblue;
+}
+
+.form-container  {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+label {
+    display: block;
+    color: yellow;
+    font-size: 25px;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+#submit {
+    background-color: rgb(250, 220, 26);
+    color: black;
+    font-size: 20px;
+}
+#submit:hover{
+    font-size: 30px;
+}
