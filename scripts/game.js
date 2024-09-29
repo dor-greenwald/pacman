@@ -75,7 +75,6 @@ function buildLayout() {
                 case 5:
                     buildPacman(i, j);
                     console.log('i, j: ', i, j);
-                    alert(i + "" + j);
                     break;
 
                 default:

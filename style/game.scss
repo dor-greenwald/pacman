@@ -1,3 +1,8 @@
+$board-width: 80vh;
+$board-size: 28;
+$background: rgb(0, 0, 77);
+$wall: rgb(0, 106, 245);
+
 * {
     padding: 0;
     margin: 0;
@@ -5,31 +10,42 @@
 
 }
 
-.wall {
-    background-color: black;
-    width: calc(100vw / 28);
-    height: calc(100vh / 28);
+
+body {
+    background-color: $background;
 }
 
 #game {
     display: grid;
-    grid-template-columns: repeat(28, 1fr);
-    grid-template-rows: repeat(28, 1fr);
+    grid-template-columns: repeat($board-size, 1fr);
+    grid-template-rows: repeat($board-size, 1fr);
     gap: 0px;
-}
+    margin: 100px auto;
+    width: fit-content;
+    border: 10px solid lighten($background, 65%);
 
-.yellow-circle {
-    width: 0.5vw;
-    height: 0.5vw;
-}
 
-.empty {
-    width: calc(100vw / 28);
-    height: calc(100vh / 28);
-    background-color: white;
-}
 
-img {
-    width: calc(100vw / 28);
-    height: calc(100vh / 28);
+    .wall {
+        background-color: $wall;
+    }
+
+
+    .yellow-circle {
+        width: 0.5vw;
+        height: 0.5vw;
+        margin: auto;
+    }
+
+    .empty {
+        background-color: white;
+    }
+
+
+
+    div,
+    img {
+        width: calc($board-width/ $board-size);
+        height: calc($board-width / $board-size);
+    }
 }
