@@ -50,14 +50,15 @@ function buildLayout() {
                     break;
 
                 case 1:
-                    console.log("hi");
                     buildWall();
+                    break;
+
+                case 2:
+                    buildGhost();
                     break;
 
                 case 3:
                     buildCherry();
-
-
                     break;
 
 
@@ -102,8 +103,6 @@ function buildCherry(i) {
     let cherry = document.createElement("img");
     cherry.src = "./../media/images/cherry.png"
     document.getElementById("game").appendChild(cherry);
-
-
 }
 
 function buildPacman(i) {
@@ -112,6 +111,12 @@ function buildPacman(i) {
     document.getElementById("game").appendChild(pacman);
     // empty.classList.add("empty");
 
+}
+
+function buildGhost(i) {
+    let cherry = document.createElement("img");
+    cherry.src = "./../media/images/ghost-blue.png"
+    document.getElementById("game").appendChild(cherry);
 }
 
 

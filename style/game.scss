@@ -7,8 +7,8 @@
 
 .wall {
     background-color: black;
-    width: 2vw;
-    height: 2vw;
+    width: calc(100vw / 28);
+    height: calc(100vh / 28);
 }
 
 #game {
@@ -19,17 +19,17 @@
 }
 
 .yellow-circle {
-    width: 1vw;
-    height: 1vw;
+    width: 0.5vw;
+    height: 0.5vw;
 }
 
 .empty {
-    width: 2vw;
-    height: 2vw;
+    width: calc(100vw / 28);
+    height: calc(100vh / 28);
     background-color: white;
 }
 
 img {
-    width: 2vw;
-    height: 2vh;
+    width: calc(100vw / 28);
+    height: calc(100vh / 28);
 }

@@ -2,13 +2,14 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
   background: rgb(56, 115, 243);
 }
 body .title {
-  margin: 15% 0;
+  margin: 10% 0;
 }
 body .title img {
   width: 100%;
@@ -23,7 +24,7 @@ body .buttonsContainer {
   gap: 5%;
   justify-items: center;
 }
-body .buttonsContainer button {
+body .buttonsContainer a {
   padding: 30px;
   width: 150px;
   background-color: rgb(56, 115, 243);
@@ -33,16 +34,18 @@ body .buttonsContainer button {
   border-radius: 5px;
   font-size: 1.5rem;
   box-shadow: 3px 5px 0px 0px #0b42ba;
+  text-decoration: none;
+  color: white;
 }
-body .buttonsContainer button:hover {
+body .buttonsContainer a:hover {
   background-color: rgb(82, 186, 255);
 }
-body .buttonsContainer button#playBtn {
+body .buttonsContainer a#playBtn {
   background-color: rgb(82, 186, 255);
   color: #08318a;
   animation: none;
 }
-body .buttonsContainer button#playBtn:hover {
+body .buttonsContainer a#playBtn:hover {
   -webkit-animation-name: wiggle;
   -webkit-animation-duration: 700ms;
   -webkit-animation-iteration-count: 1;

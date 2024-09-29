@@ -6,8 +6,8 @@
 
 .wall {
   background-color: black;
-  width: 2vw;
-  height: 2vw;
+  width: 3.5714285714vw;
+  height: 3.5714285714vh;
 }
 
 #game {
@@ -18,17 +18,17 @@
 }
 
 .yellow-circle {
-  width: 1vw;
-  height: 1vw;
+  width: 0.5vw;
+  height: 0.5vw;
 }
 
 .empty {
-  width: 2vw;
-  height: 2vw;
+  width: 3.5714285714vw;
+  height: 3.5714285714vh;
   background-color: white;
 }
 
 img {
-  width: 2vw;
-  height: 2vh;
+  width: 3.5714285714vw;
+  height: 3.5714285714vh;
 }/*# sourceMappingURL=game.css.map */
