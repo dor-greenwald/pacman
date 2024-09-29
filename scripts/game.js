@@ -155,8 +155,6 @@ function movePacman(event, x, y) {
 
 function moveLeft(x, y) {
     clear();
-    console.log(x, y)
-    console.log('layout[x][y]: ', layout[x][y]);
     layout[x][y] = 4;
     pacmanx = x;
     pacmany = y - 1;
@@ -168,8 +166,6 @@ function moveLeft(x, y) {
 
 function moveUp(x, y) {
     clear();
-    console.log(x, y)
-    console.log('layout[x][y]: ', layout[x][y]);
     layout[x][y] = 4;
     pacmanx = x - 1;
     pacmany = y;
@@ -181,8 +177,6 @@ function moveUp(x, y) {
 
 function moveRight(x, y) {
     clear();
-    console.log(x, y)
-    console.log('layout[x][y]: ', layout[x][y]);
     layout[x][y] = 4;
     pacmanx = x;
     pacmany = y + 1;
@@ -193,13 +187,11 @@ function moveRight(x, y) {
 }
 function moveDown(x, y) {
     clear();
-    console.log(x, y)
-    console.log('layout[x][y]: ', layout[x][y]);
     layout[x][y] = 4;
-    pacmanx = x+1;
+    pacmanx = x + 1;
     pacmany = y;
 
-    layout[x+1][y ] = 5;
+    layout[x + 1][y] = 5;
     buildLayout();
 
 }
