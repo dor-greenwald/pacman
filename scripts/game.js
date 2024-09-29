@@ -28,8 +28,12 @@ const layout = [
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
+
 const len = layout.length;
-console.log('len: ', len);
+let pacmanx = 20;
+let pacmany = 12;
+// document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
+document.onkeydown = (event) => movePacman(event, pacmanx, pacmany);
 
 // 0 - pac-dots
 // 1 - wall
@@ -38,15 +42,22 @@ console.log('len: ', len);
 // 4 - empty
 // 5 - pacman
 
+function clear() {
+    let game = document.getElementById("game");
+    game.remove();
+}
 
 function buildLayout() {
+    let game = document.createElement("div");
+    game.id = "game";
+    document.body.appendChild(game);
+
+
     for (let i = 0; i < len; i++) {
         for (let j = 0; j < len; j++) {
             switch (layout[i][j]) {
                 case 0:
                     buildDot();
-
-
                     break;
 
                 case 1:
@@ -61,14 +72,14 @@ function buildLayout() {
                     buildCherry();
                     break;
 
-
                 case 5:
-                    buildPacman();
+                    buildPacman(i, j);
+                    console.log('i, j: ', i, j);
+                    alert(i + "" + j);
                     break;
 
                 default:
-                    buildEmpty();
-
+                    buildEmpty(j, i);
             }
         }
     }
@@ -83,7 +94,7 @@ function buildWall(i) {
 
 }
 
-function buildEmpty(i) {
+function buildEmpty(x, y) {
     const empty = document.createElement("div");
     document.getElementById("game").appendChild(empty);
     empty.classList.add("empty");
@@ -105,9 +116,9 @@ function buildCherry(i) {
     document.getElementById("game").appendChild(cherry);
 }
 
-function buildPacman(i) {
+function buildPacman(x, y) {
     let pacman = document.createElement("img");
-    pacman.src = "./../media/images/pacman-player.png"
+    pacman.src = "./../media/images/pacman-player.png";
     document.getElementById("game").appendChild(pacman);
     // empty.classList.add("empty");
 
@@ -119,6 +130,41 @@ function buildGhost(i) {
     document.getElementById("game").appendChild(cherry);
 }
 
+
+function movePacman(event, x, y) {
+    switch (event.keyCode) {
+        case 37:
+            //left
+            moveLeft(x, y);
+            break;
+        case 38:
+            //up
+            moveUp(x, y);
+            break;
+        case 39:
+            //right
+            moveRight(x, y);
+            break;
+        case 40:
+            //down
+            moveDown(x, y);
+            break;
+
+    }
+}
+
+function moveLeft(x, y) {
+    clear();
+    console.log(x, y)
+    console.log('layout[x][y]: ', layout[x][y]);
+    layout[x][y] = 4;
+    pacmanx = x;
+    pacmany = y - 1;
+
+    layout[x][y - 1] = 5;
+    buildLayout();
+
+}
 
 
 
