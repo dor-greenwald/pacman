@@ -165,18 +165,7 @@ function moveLeft(x, y) {
     buildLayout();
 
 }
-function moveRight(x, y) {
-    clear();
-    console.log(x, y)
-    console.log('layout[x][y]: ', layout[x][y]);
-    layout[x][y] = 4;
-    pacmanx = x;
-    pacmany = y + 1;
 
-    layout[x][y + 1] = 5;
-    buildLayout();
-
-}
 function moveRight(x, y) {
     clear();
     console.log(x, y)
