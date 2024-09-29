@@ -134,65 +134,33 @@ function movePacman(event, x, y) {
     switch (event.keyCode) {
         case 37:
             //left
-            moveLeft(x, y);
+            [pacmanx, pacmany] = move(5, x, y, 0, -1);
             break;
         case 38:
             //up
-            moveUp(x, y);
+            [pacmanx, pacmany] = move(5, x, y, -1, 0);
             break;
         case 39:
             //right
-            moveRight(x, y);
+            [pacmanx, pacmany] = move(5, x, y, 0, 1);
             break;
         case 40:
             //down
-            moveDown(x, y);
+            [pacmanx, pacmany] = move(5, x, y, 1, 0);
             break;
 
     }
 }
 
-function moveLeft(x, y) {
+function move(objDigit, x, y, addx, addy) {
     clear();
-    layout[x][y] = 4;
-    pacmanx = x;
-    pacmany = y - 1;
+    layout[x][y] = 4; //empty
+    objx = x + addx;
+    objy = y + addy;
 
-    layout[x][y - 1] = 5;
+    layout[objx][objy] = objDigit;
     buildLayout();
-
-}
-
-function moveUp(x, y) {
-    clear();
-    layout[x][y] = 4;
-    pacmanx = x - 1;
-    pacmany = y;
-
-    layout[x - 1][y] = 5;
-    buildLayout();
-
-}
-
-function moveRight(x, y) {
-    clear();
-    layout[x][y] = 4;
-    pacmanx = x;
-    pacmany = y + 1;
-
-    layout[x][y + 1] = 5;
-    buildLayout();
-
-}
-function moveDown(x, y) {
-    clear();
-    layout[x][y] = 4;
-    pacmanx = x + 1;
-    pacmany = y;
-
-    layout[x + 1][y] = 5;
-    buildLayout();
-
+    return [objx, objy];
 }
 
 

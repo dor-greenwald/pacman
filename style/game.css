@@ -27,7 +27,7 @@ body {
   margin: auto;
 }
 #game .empty {
-  background-color: white;
+  background-color: rgb(0, 0, 77);
 }
 #game div,
 #game img {
