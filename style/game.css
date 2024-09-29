@@ -1,0 +1,34 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.wall {
+  background-color: black;
+  width: 2vw;
+  height: 2vh;
+}
+
+#game {
+  display: grid;
+  grid-template-columns: repeat(28, 1fr);
+  grid-template-rows: repeat(28, 1fr);
+  gap: 0px;
+}
+
+.yellow-circle {
+  width: 1vw;
+  height: 1vh;
+}
+
+.empty {
+  width: 2vw;
+  height: 2vh;
+  background-color: white;
+}
+
+img {
+  width: 2vw;
+  height: 2vh;
+}/*# sourceMappingURL=game.css.map */
