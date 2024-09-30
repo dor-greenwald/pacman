@@ -43,6 +43,30 @@ header #scoreTxt {
 #game img {
   width: 2.8571428571vh;
   height: 2.8571428571vh;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#game .cherries-img {
+  animation: blink normal 1s infinite ease-in-out;
+  /* Opera and prob css3 final iteration */
+}
+#game #userName {
+  color: white;
 }/*# sourceMappingURL=game.css.map */
 p{
   color:white;

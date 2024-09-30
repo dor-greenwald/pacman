@@ -62,4 +62,36 @@ header {
         width: calc($board-width/ $board-size);
         height: calc($board-width / $board-size);
     }
+
+    @keyframes blink {
+        0% {
+            opacity: 1;
+        }
+
+        40% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+
+        60% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .cherries-img {
+        animation: blink normal 1s infinite ease-in-out;
+        /* Opera and prob css3 final iteration */
+
+    }
+
+    #userName {
+        color: white;
+    }
 }
