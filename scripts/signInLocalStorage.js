@@ -12,17 +12,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const pass = document.getElementById('password').value;
         const email = document.getElementById('email').value;
 
+        var nameIsExist = localStorage.getItem(name);
+
+
         const userData = {
             password: pass,
             email:email
             // Add other user-specific data here if needed
         };
-        localStorage.setItem(name, JSON.stringify(userData));
+
+
+        if (nameIsExist === null) {
+            localStorage.setItem(name, JSON.stringify(userData));
+            alert('Signed in succefully!');
+        }
+        else {
+            alert("User name alreday exist, try another.")
+        }
 
         // Optional: Clear form after submission
         form.reset();
         
-        // Optional: Display a success message
-        alert('Data saved to localStorage!');
+    
     });
 });
