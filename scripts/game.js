@@ -152,7 +152,6 @@ function buildGhost(i) {
 function moveGhosts() {
     const moveGhostInterval = [];
     for (let i = 0; i < ghosts.length; i++) {
-        moveGhostInterval[i] = setInterval(() => move(ghosts[i].digit, ghosts[i].x, ghosts[i].y, 1, 0), ghostspeed)
     }
 
 }
