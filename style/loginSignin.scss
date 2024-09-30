@@ -1,4 +1,5 @@
 * {
+<<<<<<< HEAD:style/loginSignin.scss
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,6 +9,14 @@
 body {
     background-color: rgb(16, 112, 202);
 
+=======
+}
+body{
+    text-align: center;
+    background-color: rgb(16, 112, 202);
+
+
+>>>>>>> 8434635ad0a2987f879185261df3cb6e5e922092:style/logInSignIn.css
 }
 
 h1 {
@@ -19,20 +28,27 @@ h1 {
 }
 
 .textbox {
-    width: 50%;
+    width: 40%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 1px solid #555;
+    border: 1px solid #000000;
     outline: none;
-
+    color:#000000
+}
+::placeholder{
+    color:black;
+    opacity:50%;
 }
 
 
 .textbox:focus {
     background-color: lightblue;
+    width:15vw;
+
 }
 
+<<<<<<< HEAD:style/loginSignin.scss
 
 form {
     text-align: center;
@@ -48,9 +64,21 @@ form {
     img {
         width: 80%;
     }
+=======
+.form-container  {
+    display: inline-block;
+
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    width:30vw;
+    height:40vh;
+    padding:10px; 
+    margin-top: 70px;
+    
+>>>>>>> 8434635ad0a2987f879185261df3cb6e5e922092:style/logInSignIn.css
 }
-
-
 
 label {
     display: block;
@@ -69,4 +97,9 @@ label {
 
 #submit:hover {
     font-size: 30px;
+<<<<<<< HEAD:style/loginSignin.scss
 }
+=======
+}
+
+>>>>>>> 8434635ad0a2987f879185261df3cb6e5e922092:style/logInSignIn.css

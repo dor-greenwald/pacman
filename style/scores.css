@@ -24,11 +24,13 @@ table {
   padding: 30px;
   margin: 20% auto;
   background-color: white;
+  border: 5px solid green;
 }
 table td,
 table th {
-  color: rgb(115, 255, 0);
+  color: rgb(83, 184, 0);
   font-size: 1.5rem;
   font-weight: bolder;
   padding: 10px 20px;
+  border-bottom: 2px solid black;
 }/*# sourceMappingURL=scores.css.map */
