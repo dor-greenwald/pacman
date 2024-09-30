@@ -30,14 +30,19 @@ const layout = [
 ]
 
 const len = layout.length;
+let speed = 100;
 let score = 0;
 let pacmanpos = [20, 12];
 const startpink = [13, 12];
 const startred = [13, 13];
 const startyellow = [13, 14];
 const startgreen = [13, 15];
+let ghosts = [{ color: "pink", x: startpink[0], y: startpink[1] },
+{ color: "red", x: startred[0], y: startred[1] },
+{ color: "yellow", x: startyellow[0], y: startyellow[1] },
+{ color: "green", x: startgreen[0], y: startgreen[1] }];
 // document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
-document.onkeydown = (event) => movePacman(event, pacmanpos[0], pacmanpos[1]);
+document.onkeydown = (event) => moveElement(event, pacmanpos[0], pacmanpos[1]);
 
 // 0 - pac-dots
 // 1 - wall
@@ -82,7 +87,6 @@ function buildLayout() {
 
                 case 5:
                     buildPacman(i, j);
-                    console.log('i, j: ', i, j);
                     break;
 
                 case 6:
@@ -106,6 +110,12 @@ function buildLayout() {
         }
     }
 
+}
+
+function moveGhosts() {
+    for (ghost of ghosts) {
+        console.log(ghost.color);
+    }
 }
 
 
@@ -150,12 +160,11 @@ function buildPacman(x, y) {
 function buildGhost(color, x, y) {
     let ghost = document.createElement("img");
     ghost.src = `./../media/images/ghost-${color}.png`
-    console.log(color, x, y);
     document.getElementById("game").appendChild(ghost);
 }
 
 
-function movePacman(event, x, y) {
+function moveElement(event, x, y) {
     switch (event.keyCode) {
         case 37:
             //left
