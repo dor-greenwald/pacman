@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogIn-Form</title>
-    <link href = "../style/logInSignIn.css" rel="stylesheet">
+    <link href="../style/loginSignin.css" rel="stylesheet">
 </head>
+
 <body>
     <script src="./../scripts/loginLocalStorage.js"></script>
 
-    <img  src ="../media/images/pacman-title.png">
-    <form id ="MyLoginForm" class="form-container">
+    <form id="MyLoginForm" class="form-container">
+        <img src="../media/images/logintitle.png">
+        <h1>Log In</h1>
         <div>
             <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="textbox" minlength="2" maxlength="20" placeholder="Enter your name">
+            <input type="text" name="name" id="name" class="textbox" minlength="2" maxlength="20"
+                placeholder="Enter your name">
         </div>
         <div>
             <label for="password">password</label>
-            <input type="password" name="password" id="password" class="textbox" minlength="7" maxlength="20" placeholder="password">
+            <input type="password" name="password" id="password" class="textbox" minlength="7" maxlength="20"
+                placeholder="password">
         </div>
         <div>
             <input id="submit" type="submit" value="Log in">
         </div>
+        </div>
+        <img src="./../media/images/login-img.png">
+        <p>don't have an account? <a href="./signInForm.html">SIGN UP</a></p>
     </form>
 </body>
+
 </html>

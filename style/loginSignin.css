@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: rgb(16, 112, 202);
+}
+
+h1 {
+  text-align: center;
+  color: rgb(64, 223, 104);
+  margin-bottom: 20px;
+  margin-top: -50px;
+  font-size: 3rem;
+}
+
+.textbox {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #555;
+  outline: none;
+}
+
+.textbox:focus {
+  background-color: lightblue;
+}
+
+form {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 7px 29px 0px;
+  border: 1px solid black;
+  width: 80%;
+  padding: 20px;
+  margin: 150px auto;
+}
+form img {
+  width: 80%;
+}
+
+label {
+  display: block;
+  color: rgb(255, 145, 0);
+  font-size: 25px;
+}
+
+#submit {
+  background-color: rgb(250, 220, 26);
+  padding: 10px;
+  border-radius: 10px;
+  color: black;
+  font-size: 20px;
+}
+
+#submit:hover {
+  font-size: 30px;
+}/*# sourceMappingURL=loginSignin.css.map */
