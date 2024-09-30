@@ -12,7 +12,7 @@ const layout = [
     [1, 1, 1, 1, 1, 1, 0, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 0, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 0, 1, 1, 4, 1, 1, 1, 2, 2, 1, 1, 1, 4, 1, 1, 0, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 0, 1, 1, 4, 1, 2, 2, 2, 2, 2, 2, 1, 4, 1, 1, 0, 1, 1, 1, 1, 1, 1],
-    [4, 4, 4, 4, 4, 4, 0, 0, 0, 4, 1, 2, 2, 2, 2, 2, 2, 1, 4, 0, 0, 0, 4, 4, 4, 4, 4, 4],
+    [4, 4, 4, 4, 4, 4, 0, 0, 0, 4, 1, 2, 6, 7, 8, 9, 2, 1, 4, 0, 0, 0, 4, 4, 4, 4, 4, 4],
     [1, 1, 1, 1, 1, 1, 0, 1, 1, 4, 1, 2, 2, 2, 2, 2, 2, 1, 4, 1, 1, 0, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 0, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 0, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 0, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 0, 1, 1, 1, 1, 1, 1],
@@ -31,10 +31,13 @@ const layout = [
 
 const len = layout.length;
 let score = 0;
-let pacmanx = 20;
-let pacmany = 12;
+let pacmanpos = [20, 12];
+const startpink = [13, 12];
+const startred = [13, 13];
+const startyellow = [13, 14];
+const startgreen = [13, 15];
 // document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
-document.onkeydown = (event) => movePacman(event, pacmanx, pacmany);
+document.onkeydown = (event) => movePacman(event, pacmanpos[0], pacmanpos[1]);
 
 // 0 - pac-dots
 // 1 - wall
@@ -66,11 +69,15 @@ function buildLayout() {
                     break;
 
                 case 2:
-                    buildGhost();
+                    buildEmpty(i, j)
                     break;
 
                 case 3:
                     buildCherry();
+                    break;
+
+                case 4:
+                    buildEmpty(j, i);
                     break;
 
                 case 5:
@@ -78,8 +85,23 @@ function buildLayout() {
                     console.log('i, j: ', i, j);
                     break;
 
-                default:
-                    buildEmpty(j, i);
+                case 6:
+                    buildGhost("pink", i, j);
+                    break;
+
+                case 7:
+                    buildGhost("red", i, j);
+                    break;
+
+                case 8:
+                    buildGhost("yellow", i, j);
+                    break;
+
+
+                case 9:
+                    buildGhost("green", i, j);
+                    break;
+
             }
         }
     }
@@ -125,10 +147,11 @@ function buildPacman(x, y) {
 
 }
 
-function buildGhost(i) {
-    let cherry = document.createElement("img");
-    cherry.src = "./../media/images/ghost-blue.png"
-    document.getElementById("game").appendChild(cherry);
+function buildGhost(color, x, y) {
+    let ghost = document.createElement("img");
+    ghost.src = `./../media/images/ghost-${color}.png`
+    console.log(color, x, y);
+    document.getElementById("game").appendChild(ghost);
 }
 
 
@@ -136,19 +159,19 @@ function movePacman(event, x, y) {
     switch (event.keyCode) {
         case 37:
             //left
-            [pacmanx, pacmany] = move(5, x, y, 0, -1);
+            pacmanpos = move(5, x, y, 0, -1);
             break;
         case 38:
             //up
-            [pacmanx, pacmany] = move(5, x, y, -1, 0);
+            pacmanpos = move(5, x, y, -1, 0);
             break;
         case 39:
             //right
-            [pacmanx, pacmany] = move(5, x, y, 0, 1);
+            pacmanpos = move(5, x, y, 0, 1);
             break;
         case 40:
             //down
-            [pacmanx, pacmany] = move(5, x, y, 1, 0);
+            pacmanpos = move(5, x, y, 1, 0);
             break;
 
     }
@@ -157,8 +180,8 @@ function movePacman(event, x, y) {
 function move(objDigit, x, y, addx, addy) {
     clear();
     layout[x][y] = 4; //empty
-    objx = x + addx;
-    objy = y + addy;
+    let objx = x + addx;
+    let objy = y + addy;
 
     //check if colided
     switch (layout[objx, objy]) {
@@ -189,6 +212,7 @@ function move(objDigit, x, y, addx, addy) {
 function addToScore(add) {
     let scoreTxt = document.getElementById("scoreTxt");
     score += add;
+    alert(score);
     scoreTxt.innerHTML = "score: " + score;
 }
 
