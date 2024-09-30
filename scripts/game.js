@@ -32,8 +32,6 @@ const layout = [
 const len = layout.length;
 let pacmanx = 20;
 let pacmany = 12;
->>>>>>> f788d97eb64ef2d76a4d8af945416bb60613d27f
-<<<<<<< HEAD
 let ghostspeed = 100;
 let startdelay = 1000;
 let score = 0;
@@ -46,7 +44,7 @@ let ghosts = [{ digit: 6, color: "pink", x: startpink[0], y: startpink[1] },
 { digit: 7, color: "red", x: startred[0], y: startred[1] },
 { digit: 8, color: "yellow", x: startyellow[0], y: startyellow[1] },
 { digit: 9, color: "green", x: startgreen[0], y: startgreen[1] }];
-=======
+
 // document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
 document.onkeydown = (event) => movePacman(event, pacmanx, pacmany);
 
