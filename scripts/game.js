@@ -185,9 +185,17 @@ function move(objDigit, x, y, addx, addy) {
     let objy;
     do {
 
+<<<<<<< HEAD
         layout[x][y] = 4; //empty
         objx = x + addx;
         objy = y + addy;
+=======
+    //check if colided
+    switch (layout[objx][objy]) {
+        case 0:
+            addToScore(5);
+            gameover()
+>>>>>>> 0090f9a4bcb923c07d266e8fbfafa5525da0fa79
 
         //check if colided
         switch (layout[objx][objy]) {
@@ -343,9 +351,16 @@ function getValccurrence(array, value1, value2) {
     return count - 1;
 }
 
+<<<<<<< HEAD
 function won() {
 
     if (getValccurrence(layout, 0, 3) === 0) {
         gameover();
+=======
+function won(){
+    
+    if(getValccurrence(layout,0,3) === 0 ){
+        gameover()
+>>>>>>> 0090f9a4bcb923c07d266e8fbfafa5525da0fa79
     }
 }
