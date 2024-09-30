@@ -189,8 +189,7 @@ function move(objDigit, x, y, addx, addy) {
     switch (layout[objx][objy]) {
         case 0:
             addToScore(5);
-            gameover()
-
+            won()
             break;
 
         case 1:
