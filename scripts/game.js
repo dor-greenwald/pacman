@@ -268,9 +268,8 @@ function moveGhosts(i, ghost) {
 
 
 
-
 buildLayout();
-displayName()
+
 
 
 const ghostIntevals = new Array(ghosts.length).fill(0);
@@ -284,6 +283,8 @@ function displayName() {
 
     Name.innerHTML = "Hello " + NameThatLogged;
 }
+
+displayName();
 
 
 
