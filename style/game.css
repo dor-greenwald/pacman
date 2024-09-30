@@ -62,3 +62,6 @@ header #scoreTxt {
   animation: blink normal 1s infinite ease-in-out;
   /* Opera and prob css3 final iteration */
 }/*# sourceMappingURL=game.css.map */
+p{
+  color:white
+}

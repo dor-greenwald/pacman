@@ -293,6 +293,7 @@ console.log('ghostIntevals: ', ghostIntevals);
 
 function displayName() {
     let Name = document.getElementById("userName");
+    
 
     Name.innerHTML = "Hello " + NameThatLogged;
 }
