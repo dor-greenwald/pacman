@@ -193,7 +193,7 @@ function move(objDigit, x, y, addx, addy) {
     let objy = y + addy;
 
     //check if colided
-    switch (layout[objx, objy]) {
+    switch (layout[objx][objy]) {
         case 0:
             addToScore(5);
             break;
@@ -221,7 +221,6 @@ function move(objDigit, x, y, addx, addy) {
 function addToScore(add) {
     let scoreTxt = document.getElementById("scoreTxt");
     score += add;
-    alert(score);
     scoreTxt.innerHTML = "score: " + score;
 }
 
