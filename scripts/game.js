@@ -30,6 +30,7 @@ const layout = [
 ]
 
 const len = layout.length;
+<<<<<<< HEAD
 let ghostspeed = 100;
 let startdelay = 1000;
 let score = 0;
@@ -42,6 +43,10 @@ let ghosts = [{ digit: 6, color: "pink", x: startpink[0], y: startpink[1] },
 { digit: 7, color: "red", x: startred[0], y: startred[1] },
 { digit: 8, color: "yellow", x: startyellow[0], y: startyellow[1] },
 { digit: 9, color: "green", x: startgreen[0], y: startgreen[1] }];
+=======
+let pacmanx = 20;
+let pacmany = 12;
+>>>>>>> f788d97eb64ef2d76a4d8af945416bb60613d27f
 // document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
 document.onkeydown = (event) => moveElement(event, pacmanpos[0], pacmanpos[1]);
 
@@ -88,23 +93,9 @@ function buildLayout() {
 
                 case 5:
                     buildPacman(i, j);
-                    break;
-
-                case 6:
-                    buildGhost("pink", i, j);
-                    break;
-
-                case 7:
-                    buildGhost("red", i, j);
-                    break;
-
-                case 8:
-                    buildGhost("yellow", i, j);
-                    break;
-
-
-                case 9:
-                    buildGhost("green", i, j);
+                    console.log('i, j: ', i, j);
+                    alert(i + "" + j);
+                    alert(i + "" + j);
                     break;
 
             }
@@ -145,7 +136,6 @@ function buildCherry(i) {
 function buildPacman(x, y) {
     let pacman = document.createElement("img");
     pacman.src = "./../media/images/pacman-player.png";
-    pacman.id = "pacman";
     document.getElementById("game").appendChild(pacman);
     // empty.classList.add("empty");
 
@@ -170,61 +160,89 @@ function moveElement(event, x, y) {
     switch (event.keyCode) {
         case 37:
             //left
-            pacmanpos = move(5, x, y, 0, -1);
+            moveLeft(x, y);
+            moveLeft(x, y);
             break;
         case 38:
             //up
-            pacmanpos = move(5, x, y, -1, 0);
+            moveUp(x, y);
+            moveUp(x, y);
             break;
         case 39:
             //right
-            pacmanpos = move(5, x, y, 0, 1);
+            moveRight(x, y);
+            moveRight(x, y);
             break;
         case 40:
             //down
-            pacmanpos = move(5, x, y, 1, 0);
+            moveDown(x, y);
+            moveDown(x, y);
             break;
 
     }
 }
 
-function move(objDigit, x, y, addx, addy) {
+function moveLeft(x, y) {
+function moveLeft(x, y) {
     clear();
-    layout[x][y] = 4; //empty
-    let objx = x + addx;
-    let objy = y + addy;
+    console.log(x, y)
+    console.log('layout[x][y]: ', layout[x][y]);
+    layout[x][y] = 4;
+    pacmanx = x;
+    pacmany = y - 1;
 
-    //check if colided
-    switch (layout[objx, objy]) {
-        case 0:
-            addToScore(5);
-            break;
-
-        case 1:
-            objx = x;
-            objy = y;
-            break;
-
-        case 2:
-            hitGhost();
-            break;
-
-        case 3:
-            addToScore(100);
-            break;
-
-    }
-
-    layout[objx][objy] = objDigit;
+    layout[x][y - 1] = 5;
     buildLayout();
-    return [objx, objy];
+
 }
 
-function addToScore(add) {
-    let scoreTxt = document.getElementById("scoreTxt");
-    score += add;
-    alert(score);
-    scoreTxt.innerHTML = "score: " + score;
+function moveRight(x, y) {
+    clear();
+    console.log(x, y)
+    console.log('layout[x][y]: ', layout[x][y]);
+    layout[x][y] = 4;
+    pacmanx = x;
+    pacmany = y + 1;
+
+    layout[x][y + 1] = 5;
+    console.log(x, y)
+    console.log('layout[x][y]: ', layout[x][y]);
+    layout[x][y] = 4;
+    pacmanx = x;
+    pacmany = y - 1;
+
+    layout[x][y - 1] = 5;
+    buildLayout();
+
+}
+
+function moveUp(x, y) {
+    clear();
+    console.log(x, y)
+    console.log('layout[x][y]: ', layout[x][y]);
+    layout[x][y] = 4;
+    pacmanx = x - 1;
+    pacmany = y;
+
+    layout[x - 1][y] = 5;
+    buildLayout();
+
+}
+function moveDown(x, y) {
+    clear();
+    console.log(x, y)
+    console.log('layout[x][y]: ', layout[x][y]);
+    layout[x][y] = 4;
+    pacmanx = x+1;
+    pacmany = y;
+
+    layout[x+1][y ] = 5;
+    buildLayout();
+
+}
+
+
+
 }
 
 
