@@ -30,17 +30,18 @@ const layout = [
 ]
 
 const len = layout.length;
-let speed = 100;
+let ghostspeed = 100;
+let startdelay = 1000;
 let score = 0;
 let pacmanpos = [20, 12];
 const startpink = [13, 12];
 const startred = [13, 13];
 const startyellow = [13, 14];
 const startgreen = [13, 15];
-let ghosts = [{ color: "pink", x: startpink[0], y: startpink[1] },
-{ color: "red", x: startred[0], y: startred[1] },
-{ color: "yellow", x: startyellow[0], y: startyellow[1] },
-{ color: "green", x: startgreen[0], y: startgreen[1] }];
+let ghosts = [{ digit: 6, color: "pink", x: startpink[0], y: startpink[1] },
+{ digit: 7, color: "red", x: startred[0], y: startred[1] },
+{ digit: 8, color: "yellow", x: startyellow[0], y: startyellow[1] },
+{ digit: 9, color: "green", x: startgreen[0], y: startgreen[1] }];
 // document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
 document.onkeydown = (event) => moveElement(event, pacmanpos[0], pacmanpos[1]);
 
@@ -112,13 +113,6 @@ function buildLayout() {
 
 }
 
-function moveGhosts() {
-    for (ghost of ghosts) {
-        console.log(ghost.color);
-    }
-}
-
-
 function buildWall(i) {
     const wall = document.createElement("div");
     document.getElementById("game").appendChild(wall);
@@ -163,8 +157,16 @@ function buildGhost(color, x, y) {
     document.getElementById("game").appendChild(ghost);
 }
 
+function moveGhosts() {
+    const moveGhostInterval = [];
+    for (let i = 0; i < ghosts.length; i++) {
+        moveGhostInterval[i] = setInterval(() => move(ghosts[i].digit, ghosts[i].x, ghosts[i].y, 1, 0), ghostspeed)
+    }
+
+}
 
 function moveElement(event, x, y) {
+
     switch (event.keyCode) {
         case 37:
             //left
@@ -228,5 +230,6 @@ function addToScore(add) {
 
 
 buildLayout();
+setTimeout(moveGhosts, startdelay);
 
 
