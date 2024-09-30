@@ -1,4 +1,4 @@
-document.getElementById("playBtn").addEventListener("click",updateGuest() );
+document.getElementById("playBtn").addEventListener("click",updateGuest);
 
 
 function updateGuest(){
