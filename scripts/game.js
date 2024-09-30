@@ -12,7 +12,7 @@ const layout = [
     [1, 1, 1, 1, 1, 1, 0, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 0, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 0, 1, 1, 4, 1, 1, 1, 2, 2, 1, 1, 1, 4, 1, 1, 0, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 0, 1, 1, 4, 1, 2, 2, 2, 2, 2, 2, 1, 4, 1, 1, 0, 1, 1, 1, 1, 1, 1],
-    [4, 4, 4, 4, 4, 4, 0, 0, 0, 4, 1, 2, 2, 2, 2, 2, 2, 1, 4, 0, 0, 0, 4, 4, 4, 4, 4, 4],
+    [4, 4, 4, 4, 4, 4, 0, 0, 0, 4, 1, 2, 6, 7, 8, 9, 2, 1, 4, 0, 0, 0, 4, 4, 4, 4, 4, 4],
     [1, 1, 1, 1, 1, 1, 0, 1, 1, 4, 1, 2, 2, 2, 2, 2, 2, 1, 4, 1, 1, 0, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 0, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 0, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 0, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 0, 1, 1, 1, 1, 1, 1],
@@ -30,11 +30,10 @@ const layout = [
 ]
 
 const len = layout.length;
-let score = 0;
 let pacmanx = 20;
 let pacmany = 12;
 // document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
-document.onkeydown = (event) => movePacman(event, pacmanx, pacmany);
+document.onkeydown = (event) => moveElement(event, pacmanpos[0], pacmanpos[1]);
 
 // 0 - pac-dots
 // 1 - wall
@@ -66,24 +65,34 @@ function buildLayout() {
                     break;
 
                 case 2:
-                    buildGhost();
+                    buildEmpty(i, j)
                     break;
 
                 case 3:
                     buildCherry();
                     break;
 
+                case 4:
+                    buildEmpty(j, i);
+                    break;
+
                 case 5:
                     buildPacman(i, j);
                     console.log('i, j: ', i, j);
+                    alert(i + "" + j);
+                    alert(i + "" + j);
                     break;
 
-                default:
-                    buildEmpty(j, i);
             }
         }
     }
 
+}
+
+function moveGhosts() {
+    for (ghost of ghosts) {
+        console.log(ghost.color);
+    }
 }
 
 
@@ -119,76 +128,105 @@ function buildCherry(i) {
 function buildPacman(x, y) {
     let pacman = document.createElement("img");
     pacman.src = "./../media/images/pacman-player.png";
-    pacman.id = "pacman";
     document.getElementById("game").appendChild(pacman);
     // empty.classList.add("empty");
 
 }
 
-function buildGhost(i) {
-    let cherry = document.createElement("img");
-    cherry.src = "./../media/images/ghost-blue.png"
-    document.getElementById("game").appendChild(cherry);
+function buildGhost(color, x, y) {
+    let ghost = document.createElement("img");
+    ghost.src = `./../media/images/ghost-${color}.png`
+    document.getElementById("game").appendChild(ghost);
 }
 
 
-function movePacman(event, x, y) {
+function moveElement(event, x, y) {
     switch (event.keyCode) {
         case 37:
             //left
-            [pacmanx, pacmany] = move(5, x, y, 0, -1);
+            moveLeft(x, y);
+            moveLeft(x, y);
             break;
         case 38:
             //up
-            [pacmanx, pacmany] = move(5, x, y, -1, 0);
+            moveUp(x, y);
+            moveUp(x, y);
             break;
         case 39:
             //right
-            [pacmanx, pacmany] = move(5, x, y, 0, 1);
+            moveRight(x, y);
+            moveRight(x, y);
             break;
         case 40:
             //down
-            [pacmanx, pacmany] = move(5, x, y, 1, 0);
+            moveDown(x, y);
+            moveDown(x, y);
             break;
 
     }
 }
 
-function move(objDigit, x, y, addx, addy) {
+function moveLeft(x, y) {
+function moveLeft(x, y) {
     clear();
-    layout[x][y] = 4; //empty
-    objx = x + addx;
-    objy = y + addy;
-    //check if colided
-    switch (layout[objx][objy]) {
-        case 0:
-            addToScore(5);
-            break;
+    console.log(x, y)
+    console.log('layout[x][y]: ', layout[x][y]);
+    layout[x][y] = 4;
+    pacmanx = x;
+    pacmany = y - 1;
 
-        case 1:
-            objx = x;
-            objy = y;
-            break;
-
-        case 2:
-            hitGhost();
-            break;
-
-        case 3:
-            addToScore(100);
-            break;
-
-    }
-
-    layout[objx][objy] = objDigit;
+    layout[x][y - 1] = 5;
     buildLayout();
-    return [objx, objy];
+
 }
 
-function addToScore(add) {
-    let scoreTxt = document.getElementById("scoreTxt");
-    score += add;
-    scoreTxt.innerHTML = "score: " + score;
+function moveRight(x, y) {
+    clear();
+    console.log(x, y)
+    console.log('layout[x][y]: ', layout[x][y]);
+    layout[x][y] = 4;
+    pacmanx = x;
+    pacmany = y + 1;
+
+    layout[x][y + 1] = 5;
+    console.log(x, y)
+    console.log('layout[x][y]: ', layout[x][y]);
+    layout[x][y] = 4;
+    pacmanx = x;
+    pacmany = y - 1;
+
+    layout[x][y - 1] = 5;
+    buildLayout();
+
+}
+
+function moveUp(x, y) {
+    clear();
+    console.log(x, y)
+    console.log('layout[x][y]: ', layout[x][y]);
+    layout[x][y] = 4;
+    pacmanx = x - 1;
+    pacmany = y;
+
+    layout[x - 1][y] = 5;
+    buildLayout();
+
+}
+function moveDown(x, y) {
+    clear();
+    console.log(x, y)
+    console.log('layout[x][y]: ', layout[x][y]);
+    layout[x][y] = 4;
+    pacmanx = x+1;
+    pacmany = y;
+
+    layout[x+1][y ] = 5;
+    buildLayout();
+
+}
+
+
+
 }
 
 
