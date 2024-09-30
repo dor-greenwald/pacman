@@ -230,7 +230,6 @@ function updateScoreLocally(score){
         loggedUser = JSON.parse(loggedUser);
         loggedUser.score = score;
         const updatedObject = JSON.stringify(loggedUser);
-        alert(updatedObject)
         localStorage.setItem(NameThatLogged, updatedObject);
 
 }
