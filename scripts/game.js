@@ -204,7 +204,7 @@ function move(objDigit, x, y, addx, addy) {
             break;
 
         case 2:
-            hitGhost();
+            //hitGhost();
             break;
 
         case 3:
