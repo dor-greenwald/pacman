@@ -203,13 +203,25 @@ function move(objDigit, x, y, addx, addy) {
             break;
 
         case 2:
-            //hitGhost();
+            if (objDigit >= 6) {
+                objx = x;
+                objy = y;
+            }
+            else {
+                eatGhost();
+                addToScore(500);
+            }
             break;
 
         case 3:
             addToScore(100);
             gameOver()
             break;
+
+        case 5:
+            if (objDigit >= 6) {
+                gameover();
+            }
 
     }
 
@@ -269,9 +281,10 @@ function moveGhosts(i, ghost) {
     }
 }
 
+function eatGhost() {
 
+}
 
-buildLayout();
 
 
 
@@ -289,6 +302,8 @@ function displayName() {
 }
 
 displayName();
+buildLayout();
+
 
 function getValccurrence(array, value1,value2) {
 
