@@ -48,14 +48,8 @@ header #scoreTxt {
   0% {
     opacity: 1;
   }
-  40% {
-    opacity: 1;
-  }
   50% {
     opacity: 0;
-  }
-  60% {
-    opacity: 1;
   }
   100% {
     opacity: 1;
@@ -69,5 +63,5 @@ header #scoreTxt {
   color: white;
 }/*# sourceMappingURL=game.css.map */
 p{
-  color:white;
+  color:white
 }

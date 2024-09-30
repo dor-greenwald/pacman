@@ -1,7 +1,9 @@
-//document.getElementById("playBtn").addEventListener("click",updateGuest);
 
-/*
-function updateGuest(){
+
+function updateGuest() {
+
     localStorage.setItem("current user","Guest");
+
 }
-    */
+
+document.getElementById("playBtn").addEventListener("click", updateGuest);
