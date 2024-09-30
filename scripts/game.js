@@ -30,17 +30,16 @@ const layout = [
 ]
 
 const len = layout.length;
-let speed = 100;
+let speed = 300;
+let ghostSpeed = 500;
 let score = 0;
 let pacmanpos = [20, 12];
 const startpink = [13, 12];
 const startred = [13, 13];
 const startyellow = [13, 14];
 const startgreen = [13, 15];
-let ghosts = [{ color: "pink", x: startpink[0], y: startpink[1] },
-{ color: "red", x: startred[0], y: startred[1] },
-{ color: "yellow", x: startyellow[0], y: startyellow[1] },
-{ color: "green", x: startgreen[0], y: startgreen[1] }];
+let ghosts = [{ digit: 6, color: "pink", pos: [startpink[0], startpink[1]] }, { digit: 7, color: "red", pos: [startred[0], startred[1]] }, { digit: 8, color: "yellow", pos: [startyellow[0], startyellow[1]] }, { digit: 9, color: "green", pos: [startgreen[0], startgreen[1]] }];
+
 // document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
 document.onkeydown = (event) => moveElement(event, pacmanpos[0], pacmanpos[1]);
 
@@ -110,12 +109,6 @@ function buildLayout() {
         }
     }
 
-}
-
-function moveGhosts() {
-    for (ghost of ghosts) {
-        console.log(ghost.color);
-    }
 }
 
 
@@ -228,9 +221,47 @@ function addToScore(add) {
     scoreTxt.innerHTML = "score: " + score;
 }
 
+function randomDirection() {
+    const directions = ["left", "up", "right", "down"]
+    const index = Math.floor(Math.random() * 4);
+    return directions[index];
+}
+
+console.log('ghosts: ', ghosts[0].pos[0]);
+
+function moveGhosts(i, ghost) {
+    let direction = randomDirection();
+    console.log('ghosts: ', ghost.pos);
+    switch (direction) {
+        case "left":
+            //left
+            ghost.pos = move(ghost.digit, ghost.pos[0], ghost.pos[1], 0, -1);
+            break;
+        case "up":
+            //up
+            ghost.pos = move(ghost.digit, ghost.pos[0], ghost.pos[1], -1, 0);
+            break;
+        case "right":
+            //right
+            ghost.pos = move(ghost.digit, ghost.pos[0], ghost.pos[1], 0, 1);
+            break;
+        case "down":
+            //down
+            ghost.pos = move(ghost.digit, ghost.pos[0], ghost.pos[1], 1, 0);
+            break;
+    }
+}
+
 
 
 
 buildLayout();
+
+
+const ghostIntevals = new Array(ghosts.length).fill(0);
+for (let i = 0; i < ghosts.length; i++) {
+    ghostIntevals[i] = setInterval(() => moveGhosts(i, ghosts[i]), ghostSpeed);
+}
+console.log('ghostIntevals: ', ghostIntevals);
 
 
