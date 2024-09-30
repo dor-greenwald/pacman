@@ -144,6 +144,7 @@ function buildDot(i) {
 
 function buildCherry(i) {
     let cherry = document.createElement("img");
+    cherry.classList.add("cherries-img")
     cherry.src = "./../media/images/cherry.png"
     document.getElementById("game").appendChild(cherry);
 }
@@ -186,6 +187,7 @@ function moveElement(event, x, y) {
     }
 }
 
+
 function move(objDigit, x, y, addx, addy) {
     clear();
     layout[x][y] = 4; //empty
@@ -215,7 +217,9 @@ function move(objDigit, x, y, addx, addy) {
 
     layout[objx][objy] = objDigit;
     buildLayout();
+    
     return [objx, objy];
+    
 }
 
 function addToScore(add) {
@@ -223,6 +227,7 @@ function addToScore(add) {
     score += add;
     scoreTxt.innerHTML = "score: " + score;
 }
+
 
 
 
