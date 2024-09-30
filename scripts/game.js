@@ -189,7 +189,7 @@ function move(objDigit, x, y, addx, addy) {
     switch (layout[objx][objy]) {
         case 0:
             addToScore(5);
-            gameOver()
+            gameover()
 
             break;
 
@@ -293,11 +293,15 @@ function gameover() {
 }
 
 
+function addGhost(i) {
 
+}
 
 const ghostIntevals = new Array(ghosts.length).fill(0);
 for (let i = 0; i < ghosts.length; i++) {
-    ghostIntevals[i] = setInterval(() => moveGhosts(i, ghosts[i]), ghostSpeed);
+    setTimeout(() => {
+        ghostIntevals[i] = setInterval(() => moveGhosts(i, ghosts[i]), ghostSpeed);
+    }, 5000 * i)
 }
 
 function displayName() {
@@ -311,24 +315,23 @@ displayName();
 buildLayout();
 
 
-function getValccurrence(array, value1,value2) {
+function getValccurrence(array, value1, value2) {
 
     var count = 0;
-    for(let i=0;i<array.length;i++){
-        for(let j=0;j<array[i].length;j++)
-        {
-        if(array[i][j]===value1 ||array[i][j]===value2)
-            count++;
-    }
+    for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < array[i].length; j++) {
+            if (array[i][j] === value1 || array[i][j] === value2)
+                count++;
+        }
     }
     console.log(count);
 
-    return count-1;
+    return count - 1;
 }
 
-function Won(){
+function Won() {
 
-    if(getValccurrence(layout,0,3) === 0 ){
+    if (getValccurrence(layout, 0, 3) === 0) {
         clearInterval();
     }
 }
