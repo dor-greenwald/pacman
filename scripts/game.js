@@ -189,7 +189,7 @@ function move(objDigit, x, y, addx, addy) {
     switch (layout[objx][objy]) {
         case 0:
             addToScore(5);
-            gameOver()
+            won()
 
             break;
 
@@ -214,7 +214,7 @@ function move(objDigit, x, y, addx, addy) {
 
         case 3:
             addToScore(100);
-            gameOver()
+            won()
             break;
 
         case 5:
@@ -287,6 +287,14 @@ function eatGhost(x, y) {
 }
 
 function gameover() {
+    
+    const imageGameOver = document.getElementsByClassName('gameover')[0];
+    imageGameOver.style.height = '100vh';
+    imageGameOver.style.width = '100vw';
+
+
+
+
     for (let i = 0; i < ghosts.length; i++) {
         clearInterval(ghostIntevals[i]);
     }
@@ -326,9 +334,9 @@ function getValccurrence(array, value1,value2) {
     return count-1;
 }
 
-function Won(){
-
+function won(){
+    
     if(getValccurrence(layout,0,3) === 0 ){
-        clearInterval();
+        gameover()
     }
 }

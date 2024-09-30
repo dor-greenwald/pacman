@@ -65,3 +65,13 @@ header #scoreTxt {
 p{
   color:white
 }
+.gameover{
+  position: fixed; /* Position it relative to the viewport */
+  top: 0;
+  left: 0;
+  width: 0; /* Full width */
+  height: 0; /* Full height */
+  background-size: cover; /* Scale the image to cover the screen */
+  background-position: center; /* Center the image */
+  z-index: 9999; /* Ensure it appears above other content */
+}
