@@ -18,16 +18,28 @@ h1 {
 }
 
 .textbox {
-  width: 50%;
+  width: 40%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 1px solid #555;
+  border: 1px solid #000000;
   outline: none;
+  color: #000000;
+}
+
+::-moz-placeholder {
+  color: black;
+  opacity: 50%;
+}
+
+::placeholder {
+  color: black;
+  opacity: 50%;
 }
 
 .textbox:focus {
   background-color: lightblue;
+  width: 15vw;
 }
 
 form {
@@ -37,12 +49,14 @@ form {
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 7px 29px 0px;
   border: 1px solid black;
-  width: 80%;
+  width: 50%;
+  height: -moz-min-content;
+  height: min-content;
   padding: 20px;
   margin: 150px auto;
 }
 form img {
-  width: 80%;
+  width: 50%;
 }
 
 label {
