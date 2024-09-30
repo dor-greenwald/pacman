@@ -60,3 +60,6 @@ header #scoreTxt {
   animation: blink normal 1s infinite ease-in-out; /* Opera and prob css3 final iteration */
 
 }
+#userName{
+  color:white;
+}
