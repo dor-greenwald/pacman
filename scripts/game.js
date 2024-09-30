@@ -38,6 +38,9 @@ const startpink = [13, 12];
 const startred = [13, 13];
 const startyellow = [13, 14];
 const startgreen = [13, 15];
+const NameThatLogged = localStorage.getItem("current user");
+const ScoreOfUser = JSON.parse(localStorage.getItem(NameThatLogged)).score;
+
 let ghosts = [{ digit: 6, color: "pink", pos: [startpink[0], startpink[1]] }, { digit: 7, color: "red", pos: [startred[0], startred[1]] }, { digit: 8, color: "yellow", pos: [startyellow[0], startyellow[1]] }, { digit: 9, color: "green", pos: [startgreen[0], startgreen[1]] }];
 
 // document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
@@ -218,7 +221,18 @@ function move(objDigit, x, y, addx, addy) {
 function addToScore(add) {
     let scoreTxt = document.getElementById("scoreTxt");
     score += add;
+    updateScoreLocally(score)
     scoreTxt.innerHTML = "score: " + score;
+}
+
+function updateScoreLocally(score){
+    let loggedUser = localStorage.getItem(NameThatLogged);
+        loggedUser = JSON.parse(loggedUser);
+        loggedUser.score = score;
+        const updatedObject = JSON.stringify(loggedUser);
+        alert(updatedObject)
+        localStorage.setItem(NameThatLogged, updatedObject);
+
 }
 
 function randomDirection() {
@@ -256,6 +270,7 @@ function moveGhosts(i, ghost) {
 
 
 buildLayout();
+displayName()
 
 
 const ghostIntevals = new Array(ghosts.length).fill(0);
@@ -263,5 +278,13 @@ for (let i = 0; i < ghosts.length; i++) {
     ghostIntevals[i] = setInterval(() => moveGhosts(i, ghosts[i]), ghostSpeed);
 }
 console.log('ghostIntevals: ', ghostIntevals);
+
+function displayName(){
+    let Name = document.getElementById("userName");
+
+    Name.innerHTML = "Hello " + NameThatLogged;
+}
+
+
 
 

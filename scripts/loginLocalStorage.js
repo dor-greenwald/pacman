@@ -1,7 +1,7 @@
 // Wait for the DOM to fully load
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('MyLoginForm');
-
+    let currentUser = ""
     // Load saved data from localStorage
     form.addEventListener('submit', (event) => {
         event.preventDefault(); // Prevent default form submission
@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Check if the entered password matches the stored one
             if (passwordInput === userData.password) {
+                currentUser = nameInput;
+                localStorage.setItem("current user",currentUser);
+
                 alert('Sign in successful!');
                 // Proceed with the login (e.g., redirect to another page)
             }

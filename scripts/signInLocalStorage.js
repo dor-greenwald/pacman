@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const userData = {
             password: pass,
-            email:email
+            email:email,
+            score:0
             // Add other user-specific data here if needed
         };
 
