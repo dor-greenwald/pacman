@@ -193,6 +193,8 @@ function move(objDigit, x, y, addx, addy) {
     switch (layout[objx][objy]) {
         case 0:
             addToScore(5);
+            gameOver()
+
             break;
 
         case 1:
@@ -206,6 +208,7 @@ function move(objDigit, x, y, addx, addy) {
 
         case 3:
             addToScore(100);
+            gameOver()
             break;
 
     }
@@ -287,6 +290,24 @@ function displayName() {
 
 displayName();
 
+function getValccurrence(array, value1,value2) {
 
+    var count = 0;
+    for(let i=0;i<array.length;i++){
+        for(let j=0;j<array[i].length;j++)
+        {
+        if(array[i][j]===value1 ||array[i][j]===value2)
+            count++;
+    }
+    }
+    console.log(count);
 
+    return count-1;
+}
 
+function Won(){
+
+    if(getValccurrence(layout,0,3) === 0 ){
+        clearInterval();
+    }
+}
