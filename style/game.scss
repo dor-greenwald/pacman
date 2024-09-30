@@ -20,6 +20,10 @@ header {
     display: flex;
     justify-content: space-between;
 
+    p {
+        color: white;
+    }
+
     #scoreTxt {
         margin: 20px;
         font-size: 1.5rem;
@@ -34,7 +38,7 @@ header {
     grid-template-columns: repeat($board-size, 1fr);
     grid-template-rows: repeat($board-size, 1fr);
     gap: 0px;
-    margin: 100px auto;
+    margin: 30px auto 0 auto;
     width: fit-content;
     border: 10px solid lighten($background, 65%);
 
@@ -68,6 +72,9 @@ header {
             opacity: 1;
         }
 
+        40% {
+            opacity: 1;
+        }
 
         50% {
             opacity: 0;
@@ -84,7 +91,5 @@ header {
 
     }
 
-    #userName {
-        color: white;
-    }
+
 }
