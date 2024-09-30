@@ -34,13 +34,9 @@ let speed = 300;
 let ghostSpeed = 500;
 let score = 0;
 let pacmanpos = [20, 12];
-const startpink = [13, 12];
-const startred = [13, 13];
-const startyellow = [13, 14];
-const startgreen = [13, 15];
 const NameThatLogged = localStorage.getItem("current user");
 
-let ghosts = [{ digit: 6, color: "pink", pos: [startpink[0], startpink[1]] }, { digit: 7, color: "red", pos: [startred[0], startred[1]] }, { digit: 8, color: "yellow", pos: [startyellow[0], startyellow[1]] }, { digit: 9, color: "green", pos: [startgreen[0], startgreen[1]] }];
+let ghosts = [{ digit: 6, color: "pink", pos: [13, 12], start: [13, 12] }, { digit: 7, color: "red", pos: [13, 13], start: [13, 13] }, { digit: 8, color: "yellow", pos: [13, 14], start: [13, 14] }, { digit: 9, color: "green", pos: [13, 15], start: [13, 15] }];
 
 // document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
 document.onkeydown = (event) => moveElement(event, pacmanpos[0], pacmanpos[1]);
@@ -200,13 +196,16 @@ function move(objDigit, x, y, addx, addy) {
             objy = y;
             break;
 
-        case 2:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
             if (objDigit >= 6) {
                 objx = x;
                 objy = y;
             }
             else {
-                eatGhost();
+                eatGhost(objx, objy);
                 addToScore(500);
             }
             break;
@@ -254,7 +253,6 @@ function randomDirection() {
     return directions[index];
 }
 
-console.log('ghosts: ', ghosts[0].pos[0]);
 
 function moveGhosts(i, ghost) {
     let direction = randomDirection();
@@ -278,8 +276,17 @@ function moveGhosts(i, ghost) {
     }
 }
 
-function eatGhost() {
+function eatGhost(x, y) {
+    const ghostDigit = layout[x][y];
+    let index = ghostDigit - 6;
+    const start = ghosts[index].start;
+    ghosts[index].pos = start;
+}
 
+function gameover() {
+    for (let i = 0; i < ghosts.length; i++) {
+        clearInterval(ghostIntevals[i]);
+    }
 }
 
 
@@ -289,11 +296,10 @@ const ghostIntevals = new Array(ghosts.length).fill(0);
 for (let i = 0; i < ghosts.length; i++) {
     ghostIntevals[i] = setInterval(() => moveGhosts(i, ghosts[i]), ghostSpeed);
 }
-console.log('ghostIntevals: ', ghostIntevals);
 
 function displayName() {
     let Name = document.getElementById("userName");
-    
+
 
     Name.innerHTML = "Hello " + NameThatLogged;
 }
