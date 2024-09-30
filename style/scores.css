@@ -9,22 +9,25 @@ body {
   background-image: url("./../media/images/background.jpg");
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 h1 {
   color: white;
   font-size: 10vw;
   margin: 20px auto;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 h1 img {
   width: 10vw;
 }
 
 table {
-  padding: 30px;
-  margin: 20% auto;
+  padding: 100px;
+  margin: 100px auto 0 auto;
   background-color: white;
-  border: 5px solid green;
+  border: 15px solid green;
 }
 table td,
 table th {
@@ -33,4 +36,8 @@ table th {
   font-weight: bolder;
   padding: 10px 20px;
   border-bottom: 2px solid black;
+}
+table th {
+  color: rgb(10, 104, 10);
+  font-size: 2rem;
 }/*# sourceMappingURL=scores.css.map */

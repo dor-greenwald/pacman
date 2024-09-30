@@ -39,7 +39,6 @@ const startred = [13, 13];
 const startyellow = [13, 14];
 const startgreen = [13, 15];
 const NameThatLogged = localStorage.getItem("current user");
-const ScoreOfUser = JSON.parse(localStorage.getItem(NameThatLogged)).score;
 
 let ghosts = [{ digit: 6, color: "pink", pos: [startpink[0], startpink[1]] }, { digit: 7, color: "red", pos: [startred[0], startred[1]] }, { digit: 8, color: "yellow", pos: [startyellow[0], startyellow[1]] }, { digit: 9, color: "green", pos: [startgreen[0], startgreen[1]] }];
 
@@ -55,13 +54,14 @@ document.onkeydown = (event) => moveElement(event, pacmanpos[0], pacmanpos[1]);
 
 function clear() {
     let game = document.getElementById("game");
-    game.remove();
+    if (game) game.remove();
 }
 
 function buildLayout() {
+    let container = document.getElementById("container");
     let game = document.createElement("div");
     game.id = "game";
-    document.body.appendChild(game);
+    container.appendChild(game);
 
 
     for (let i = 0; i < len; i++) {
@@ -150,7 +150,6 @@ function buildPacman(x, y) {
     pacman.src = "./../media/images/pacman-player.png";
     pacman.id = "pacman";
     document.getElementById("game").appendChild(pacman);
-    // empty.classList.add("empty");
 
 }
 
@@ -213,9 +212,9 @@ function move(objDigit, x, y, addx, addy) {
 
     layout[objx][objy] = objDigit;
     buildLayout();
-    
+
     return [objx, objy];
-    
+
 }
 
 function addToScore(add) {
@@ -225,13 +224,16 @@ function addToScore(add) {
     scoreTxt.innerHTML = "score: " + score;
 }
 
-function updateScoreLocally(score){
+function updateScoreLocally(score) {
     let loggedUser = localStorage.getItem(NameThatLogged);
+    if (loggedUser) {
+
         loggedUser = JSON.parse(loggedUser);
         loggedUser.score = score;
         const updatedObject = JSON.stringify(loggedUser);
         localStorage.setItem(NameThatLogged, updatedObject);
 
+    }
 }
 
 function randomDirection() {
@@ -244,7 +246,6 @@ console.log('ghosts: ', ghosts[0].pos[0]);
 
 function moveGhosts(i, ghost) {
     let direction = randomDirection();
-    console.log('ghosts: ', ghost.pos);
     switch (direction) {
         case "left":
             //left
@@ -278,7 +279,7 @@ for (let i = 0; i < ghosts.length; i++) {
 }
 console.log('ghostIntevals: ', ghostIntevals);
 
-function displayName(){
+function displayName() {
     let Name = document.getElementById("userName");
 
     Name.innerHTML = "Hello " + NameThatLogged;

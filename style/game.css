@@ -10,6 +10,7 @@ body {
 
 header {
   display: flex;
+  justify-content: space-between;
 }
 header #scoreTxt {
   margin: 20px;
@@ -43,23 +44,3 @@ header #scoreTxt {
   width: 2.8571428571vh;
   height: 2.8571428571vh;
 }/*# sourceMappingURL=game.css.map */
-
-
-@keyframes blink {
-  0% {
-      opacity:1;
-  }
-  50% {
-      opacity:0;
-  }
-  100% {
-      opacity:1;
-  }
-} 
-.cherries-img{
-  animation: blink normal 1s infinite ease-in-out; /* Opera and prob css3 final iteration */
-
-}
-#userName{
-  color:white;
-}

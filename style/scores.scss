@@ -9,12 +9,14 @@ body {
     background-image: url("./../media/images/background.jpg");
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
 }
 
 h1 {
     color: white;
     font-size: 10vw;
     margin: 20px auto;
+    width: fit-content;
 
     img {
         width: 10vw;
@@ -22,11 +24,10 @@ h1 {
 }
 
 table {
-
-    padding: 30px;
-    margin: 20% auto;
+    padding: 100px;
+    margin: 100px auto 0 auto;
     background-color: white;
-    border: 5px solid green;
+    border: 15px solid green;
 
     td,
     th {
@@ -35,5 +36,10 @@ table {
         font-weight: bolder;
         padding: 10px 20px;
         border-bottom: 2px solid black;
+    }
+
+    th {
+        color: rgb(10, 104, 10);
+        font-size: 2rem;
     }
 }
