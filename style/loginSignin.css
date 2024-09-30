@@ -49,14 +49,12 @@ form {
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 7px 29px 0px;
   border: 1px solid black;
-  width: 50%;
-  height: -moz-min-content;
-  height: min-content;
+  width: 80%;
   padding: 20px;
   margin: 150px auto;
 }
 form img {
-  width: 50%;
+  width: 80%;
 }
 
 label {

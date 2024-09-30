@@ -341,16 +341,9 @@ function getValccurrence(array, value1, value2) {
     return count - 1;
 }
 
-<<<<<<< HEAD
-function Won() {
-
-    if (getValccurrence(layout, 0, 3) === 0) {
-        clearInterval();
-=======
 function won(){
     
     if(getValccurrence(layout,0,3) === 0 ){
         gameover()
->>>>>>> 6a97a64ea54ee0f557fc6a36d6fde6ee3b5d03b7
     }
 }
