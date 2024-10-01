@@ -187,10 +187,6 @@ function moveElement(event, x, y) {
 
 function move(objDigit, x, y, addx, addy) {
     clear();
-    layout[x][y] = 4; //empty
-    let objx = x + addx;
-    let objy = y + addy;
-
     let objx;
     let objy;
 
