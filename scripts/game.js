@@ -38,12 +38,13 @@ const layout = [
 const len = layout.length;
 let speed = 300;
 let ghostSpeed = 500;
+let ghostDelay = 5000;
 let score = 0;
 let pacmanpos = [20, 12];
 let previousDirection = ["up", "up", "up", "up"];
 const NameThatLogged = localStorage.getItem("current user");
 let playerType = "pacman"
-let ghosts = [{
+const ghosts = [{
     digit: 6, color: "pink", pos: [13, 12], start: [13, 12], pathOut: ["up", "right", "up", "up"]
 },
 { digit: 7, color: "red", pos: [13, 13], start: [13, 13], pathOut: ["up", "up", "up"] },
@@ -282,7 +283,8 @@ function eatGhost(x, y) {
     let index = ghostDigit - 6;
     const start = ghosts[index].start;
     ghosts[index].pos = start;
-    getOut(ghosts[index]);
+
+    setTimeout(getOut(ghosts[index]), ghostDelay);
 
 }
 
@@ -302,7 +304,7 @@ for (let i = 0; i < ghosts.length; i++) {
     setTimeout(() => {
         getOut(ghosts[i]);
         ghostIntevals[i] = setInterval(() => moveGhosts(i, ghosts[i]), ghostSpeed);
-    }, 5000 * i)
+    }, ghostDelay * i)
 }
 
 function displayName() {
@@ -323,7 +325,6 @@ function getValccurrence(array, value1, value2) {
                 count++;
         }
     }
-    console.log(count);
 
     return count - 1;
 }
@@ -340,17 +341,13 @@ function randomDirection(x, y, i) {
     if (layout[x][y + 1] !== 1 && layout[x][y + 1] < 6 && previousDirection[i] !== "left") available.push("right");
     if (layout[x][y - 1] !== 1 && layout[x][y - 1] < 6 && previousDirection[i] !== "right") available.push("left");
     if (layout[x - 1][y] !== 1 && layout[x - 1][y] < 6 && previousDirection[i] !== "down") available.push("up");
-    if (layout[x + 1][y] !== 1 && layout[x + 1][y] < 6 && previousDirection[i] !== "up") available.push("down");
-    console.log('available: ', available, "previous", previousDirection[i]);
-
+    if (layout[x + 1][y] !== 1 && layout[x + 1][y] < 6 && previousDirection[i] !== "up" && layout[x + 1][y] !== 2) available.push("down");
     const index = Math.floor(Math.random() * available.length);
     return available[index];
 }
 
 function getOut(ghost) {
     for (let i = 0; i < ghost.pathOut.length; i++) {
-        //for (movedirection of ghost.pathOut) {
-        console.log('ghost path move: ', ghost.pathOut[i]);
         setTimeout(() => { moveOut(ghost, ghost.pathOut[i]) }, ghostSpeed)
     }
 }
@@ -418,7 +415,6 @@ function moveGhosts(i, ghost) {
 
 
 function isIntersection(x, y) {
-    console.log("intersection");
     let count = 0;
     if (layout[x][y + 1] !== 1) count++;
     if (layout[x][y - 1] !== 1) count++;
