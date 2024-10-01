@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (passwordInput === userData.password) {
                 currentUser = nameInput;
                 localStorage.setItem("current user",currentUser);
+                window.location.href="../pages/game.html"
 
                 alert('Sign in successful!');
                 // Proceed with the login (e.g., redirect to another page)

@@ -28,6 +28,12 @@ const layout = [
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
+// 0 - pac-dots
+// 1 - wall
+// 2 - ghost-lair not yet
+// 3 - power-pellet
+// 4 - empty
+// 5 - pacman
 
 const len = layout.length;
 let speed = 300;
@@ -36,7 +42,7 @@ let score = 0;
 let pacmanpos = [20, 12];
 let previousDirection = ["up", "up", "up", "up"];
 const NameThatLogged = localStorage.getItem("current user");
-
+let playerType = "pacman"
 let ghosts = [{
     digit: 6, color: "pink", pos: [13, 12], start: [13, 12], pathOut: ["up", "right", "up", "up"]
 },
@@ -47,13 +53,9 @@ let ghosts = [{
 
 // document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
 document.onkeydown = (event) => moveElement(event, pacmanpos[0], pacmanpos[1]);
+document.getElementById("ms-pacman").addEventListener("click",()=>{playerType="mspacman"});
+document.getElementById("pacman").addEventListener("click",()=>{playerType="pacman"});
 
-// 0 - pac-dots
-// 1 - wall
-// 2 - ghost-lair not yet
-// 3 - power-pellet
-// 4 - empty
-// 5 - pacman
 
 function clear() {
     let game = document.getElementById("game");
@@ -148,38 +150,50 @@ function buildCherry(i) {
     document.getElementById("game").appendChild(cherry);
 }
 
-function buildPacman(x, y) {
-    let pacman = document.createElement("img");
-    pacman.src = "./../media/images/pacman-player.png";
-    pacman.id = "pacman";
-    document.getElementById("game").appendChild(pacman);
 
+function buildPacman() {
+    let pacman = document.createElement("img");
+    
+    pacman.src = `./../media/gif/${playerType}.gif`;
+    pacman.classList.add(`${playerType}`);
+
+    
+    pacman.id = "pacman-player";
+    document.getElementById("game").appendChild(pacman);
 }
 
 function buildGhost(color, x, y) {
     let ghost = document.createElement("img");
-    ghost.src = `./../media/images/ghost-${color}.png`
+    ghost.src = `./../media/gif/ghost-${color}.gif`
     document.getElementById("game").appendChild(ghost);
 }
 
 
 function moveElement(event, x, y) {
+    let player = document.getElementById("pacman-player");
     switch (event.keyCode) {
         case 37:
             //left
+            // player.style.transform='rotate(180deg)'
             pacmanpos = move(5, x, y, 0, -1);
             break;
         case 38:
             //up
+            // player.style.transform='rotate(90deg)'
             pacmanpos = move(5, x, y, -1, 0);
+
             break;
         case 39:
             //right
             pacmanpos = move(5, x, y, 0, 1);
+            // player.style.transform='rotate(0deg)'
+
             break;
         case 40:
             //down
             pacmanpos = move(5, x, y, 1, 0);
+            // player.style.transform='rotate(-90deg)'
+
             break;
 
     }
@@ -244,10 +258,7 @@ function move(objDigit, x, y, addx, addy) {
 
     layout[objx][objy] = objDigit;
     buildLayout();
-
-
     return [objx, objy];
-
 }
 
 function addToScore(add) {
@@ -268,8 +279,6 @@ function updateScoreLocally(score) {
 
     }
 }
-
-
 
 
 function eatGhost(x, y) {
@@ -302,8 +311,6 @@ for (let i = 0; i < ghosts.length; i++) {
 
 function displayName() {
     let Name = document.getElementById("userName");
-
-
     Name.innerHTML = "Hello " + NameThatLogged;
 }
 
@@ -331,9 +338,6 @@ function won() {
         gameover();
     }
 }
-
-
-
 
 function randomDirection(x, y, i) {
     const available = [];
@@ -414,8 +418,6 @@ function moveGhosts(i, ghost) {
     }
 
     ghost.pos = move(ghost.digit, ghost.pos[0], ghost.pos[1], addx, addy);
-
-
 }
 
 

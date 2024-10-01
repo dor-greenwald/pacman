@@ -21,15 +21,12 @@ header {
     justify-content: space-between;
 
     p {
-        color: white;
-    }
-
-    #scoreTxt {
         margin: 20px;
         font-size: 1.5rem;
         color: white;
-
     }
+
+
 }
 
 
@@ -104,3 +101,17 @@ header {
     background-position: center;
     z-index: 9999;
 }
+.playerBtn{
+    font-size: 1.3rem;
+    padding:7px;
+    margin:7px;
+    background-color: rgb(255, 183, 0);
+}
+.mspacman{
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+// #pacman-player{
+//     display: inline-block;
+//     transform: rotate(90) !important;
+// }

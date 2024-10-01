@@ -1,41 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SignIn-Form</title>
-    <link href="../style/loginSignin.css" rel="stylesheet">
+    <link href="../style/loginSignin.css" rel="stylesheet" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <script src="./../scripts/signInLocalStorage.js"></script>
 
     <section>
-        <form id="MySignInForm" class="form-container">
-            <img src="../media/images/logintitle.png">
-            <h1>Sign In</h1>
-            <div>
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" class="textbox" minlength="2" maxlength="20"
-                    placeholder="name">
-            </div>
-            <div>
-                <label for="password">password</label>
-                <input type="password" name="password" id="password" class="textbox" minlength="7" maxlength="20">
-            </div>
-            <div>
-                <label for="email">email</label>
-                <input type="email" name="email" class="textbox" id="email" placeholder="email">
-            </div>
-            <div>
-                <input id="submit" type="submit" value="Submit">
-            </div>
-            <img src="./../media/images/login-img.png">
-
-        </form>
+      <form id="MySignInForm" class="form-container">
+        <img src="../media/images/logintitle.png" />
+        <h1>Sign In</h1>
+        <div>
+          <label for="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="textbox"
+            minlength="2"
+            maxlength="20"
+            placeholder="name"
+          />
+        </div>
+        <div>
+          <label for="password">password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="textbox"
+            minlength="7"
+            maxlength="20"
+          />
+        </div>
+        <div>
+          <label for="email">email</label>
+          <input
+            type="email"
+            name="email"
+            class="textbox"
+            id="email"
+            placeholder="email"
+          />
+        </div>
+        <div>
+          <input id="submit" type="submit" value="Submit" />
+        </div>
+        <img src="./../media/images/login-img.png" />
+        <p>already have an account? <a href="./loginForm.html">LOG IN</a></p>
+      </form>
     </section>
-</body>
-
+  </body>
 </html>

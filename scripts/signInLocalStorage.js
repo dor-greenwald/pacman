@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nameIsExist === null) {
             localStorage.setItem(name, JSON.stringify(userData));
             alert('Signed in succefully!');
+            window.location.href="../pages/loginForm.html"
         }
         else {
             alert("User name alreday exist, try another.")
