@@ -53,8 +53,8 @@ let ghosts = [{
 
 // document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
 document.onkeydown = (event) => moveElement(event, pacmanpos[0], pacmanpos[1]);
-document.getElementById("ms-pacman").addEventListener("click",()=>{playerType="mspacman"});
-document.getElementById("pacman").addEventListener("click",()=>{playerType="pacman"});
+document.getElementById("ms-pacman").addEventListener("click", () => { playerType = "mspacman" });
+document.getElementById("pacman").addEventListener("click", () => { playerType = "pacman" });
 
 
 function clear() {
@@ -153,11 +153,11 @@ function buildCherry(i) {
 
 function buildPacman() {
     let pacman = document.createElement("img");
-    
+
     pacman.src = `./../media/gif/${playerType}.gif`;
     pacman.classList.add(`${playerType}`);
 
-    
+
     pacman.id = "pacman-player";
     document.getElementById("game").appendChild(pacman);
 }
@@ -239,7 +239,9 @@ function move(objDigit, x, y, addx, addy) {
             break;
 
         case 3:
-            addToScore(100);
+            if (objDigit === 5) {
+                addToScore(100);
+            }
             won()
             break;
 
