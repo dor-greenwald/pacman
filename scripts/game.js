@@ -208,12 +208,6 @@ function move(objDigit, x, y, addx, addy) {
     objx = x + addx;
     objy = y + addy;
 
-
-
-    layout[x][y] = 4; //empty
-    objx = x + addx;
-    objy = y + addy;
-
     //check if colided
     switch (layout[objx][objy]) {
         case 0:
