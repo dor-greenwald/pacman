@@ -181,58 +181,57 @@ function moveElement(event, x, y) {
 
 function move(objDigit, x, y, addx, addy) {
     clear();
-    let objx;
-    let objy;
-    do {
+    layout[x][y] = 4; //empty
+    let objx = x + addx;
+    let objy = y + addy;
 
-<<<<<<< HEAD
-        layout[x][y] = 4; //empty
-        objx = x + addx;
-        objy = y + addy;
-=======
     //check if colided
     switch (layout[objx][objy]) {
         case 0:
-            addToScore(5);
+            if(objDigit === 5)
+            {
+                addToScore(5);
+            }
             won()
             break;
 
-            case 1:
+        case 1:
+            objx = x;
+            objy = y;
+            break;
+
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+            if (objDigit >= 6) {
                 objx = x;
                 objy = y;
-                break;
+            }
+            else {
+                eatGhost(objx, objy);
+                addToScore(500);
+            }
+            break;
 
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-                if (objDigit >= 6) {
-                    objx = x;
-                    objy = y;
-                }
-                else {
-                    eatGhost(objx, objy);
-                    addToScore(500);
-                }
-                break;
+        case 3:
+            if(objDigit === 5)
+            {
+            addToScore(100);
+            }
+            won()
+            break;
 
-            case 3:
-                addToScore(100);
-                won()
-                break;
+        case 5:
+            if (objDigit >= 6) {
+                gameover();
+            }
 
-            case 5:
-                if (objDigit >= 6) {
-                    gameover();
-                }
+    }
 
-        }
+    layout[objx][objy] = objDigit;
+    buildLayout();
 
-        layout[objx][objy] = objDigit;
-        buildLayout();
-
-
-    } while (objDigit >= 6);
     return [objx, objy];
 
 }
@@ -293,7 +292,7 @@ function eatGhost(x, y) {
 }
 
 function gameover() {
-
+    
     const imageGameOver = document.getElementsByClassName('gameover')[0];
     imageGameOver.style.height = '100vh';
     imageGameOver.style.width = '100vw';
@@ -343,16 +342,9 @@ function getValccurrence(array, value1, value2) {
     return count - 1;
 }
 
-<<<<<<< HEAD
-function won() {
-
-    if (getValccurrence(layout, 0, 3) === 0) {
-        gameover();
-=======
 function won(){
     
     if(getValccurrence(layout,0,3) === 0 ){
         gameover()
->>>>>>> 0090f9a4bcb923c07d266e8fbfafa5525da0fa79
     }
 }
