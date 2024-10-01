@@ -51,6 +51,9 @@ header #scoreTxt {
   0% {
     opacity: 1;
   }
+  40% {
+    opacity: 1;
+  }
   50% {
     opacity: 0;
   }
@@ -61,17 +64,15 @@ header #scoreTxt {
 #game .cherries-img {
   animation: blink normal 1s infinite ease-in-out;
   /* Opera and prob css3 final iteration */
-}/*# sourceMappingURL=game.css.map */
-p{
-  color:white
 }
-.gameover{
-  position: fixed; /* Position it relative to the viewport */
+
+.gameover {
+  position: fixed;
   top: 0;
   left: 0;
-  width: 0; /* Full width */
-  height: 0; /* Full height */
-  background-size: cover; /* Scale the image to cover the screen */
-  background-position: center; /* Center the image */
-  z-index: 9999; /* Ensure it appears above other content */
-}
+  width: 0;
+  height: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 9999;
+}/*# sourceMappingURL=game.css.map */

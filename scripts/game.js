@@ -34,9 +34,16 @@ let speed = 300;
 let ghostSpeed = 500;
 let score = 0;
 let pacmanpos = [20, 12];
+let previousDirection = ["up", "up", "up", "up"];
 const NameThatLogged = localStorage.getItem("current user");
 
-let ghosts = [{ digit: 6, color: "pink", pos: [13, 12], start: [13, 12] }, { digit: 7, color: "red", pos: [13, 13], start: [13, 13] }, { digit: 8, color: "yellow", pos: [13, 14], start: [13, 14] }, { digit: 9, color: "green", pos: [13, 15], start: [13, 15] }];
+let ghosts = [{
+    digit: 6, color: "pink", pos: [13, 12], start: [13, 12], pathOut: ["up", "right", "up", "up"]
+},
+{ digit: 7, color: "red", pos: [13, 13], start: [13, 13], pathOut: ["up", "up", "up"] },
+{ digit: 8, color: "yellow", pos: [13, 14], start: [13, 14], pathOut: ["up", "up", "up"] },
+{ digit: 9, color: "green", pos: [13, 15], start: [13, 15], pathOut: ["up", "left", "up", "up"] }];
+
 
 // document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
 document.onkeydown = (event) => moveElement(event, pacmanpos[0], pacmanpos[1]);
@@ -178,69 +185,61 @@ function moveElement(event, x, y) {
     }
 }
 
-
 function move(objDigit, x, y, addx, addy) {
     clear();
     let objx;
     let objy;
-    do {
 
-<<<<<<< HEAD
-        layout[x][y] = 4; //empty
-        objx = x + addx;
-        objy = y + addy;
-=======
+    layout[x][y] = 4; //empty
+    objx = x + addx;
+    objy = y + addy;
+
     //check if colided
     switch (layout[objx][objy]) {
         case 0:
-            addToScore(5);
-            gameover()
->>>>>>> 0090f9a4bcb923c07d266e8fbfafa5525da0fa79
-
-        //check if colided
-        switch (layout[objx][objy]) {
-            case 0:
+            if (objDigit === 5) {
                 addToScore(5);
-                won()
+            }
+            won()
+            break;
 
-                break;
+        case 1:
+            objx = x;
+            objy = y;
+            break;
 
-            case 1:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+            if (objDigit >= 6) {
                 objx = x;
                 objy = y;
-                break;
-
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-                if (objDigit >= 6) {
-                    objx = x;
-                    objy = y;
-                }
-                else {
-                    eatGhost(objx, objy);
+            }
+            else {
+                eatGhost(objx, objy);
+                if (objDigit === 5) {
                     addToScore(500);
                 }
-                break;
+            }
+            break;
 
-            case 3:
-                addToScore(100);
-                won()
-                break;
+        case 3:
+            addToScore(100);
+            won()
+            break;
 
-            case 5:
-                if (objDigit >= 6) {
-                    gameover();
-                }
+        case 5:
+            if (objDigit >= 6) {
+                gameover();
+            }
 
-        }
+    }
 
-        layout[objx][objy] = objDigit;
-        buildLayout();
+    layout[objx][objy] = objDigit;
+    buildLayout();
 
 
-    } while (objDigit >= 6);
     return [objx, objy];
 
 }
@@ -264,64 +263,33 @@ function updateScoreLocally(score) {
     }
 }
 
-function randomDirection() {
-    const directions = ["left", "up", "right", "down"]
-    const index = Math.floor(Math.random() * 4);
-    return directions[index];
-}
 
 
-function moveGhosts(i, ghost) {
-    let direction = randomDirection();
-    switch (direction) {
-        case "left":
-            //left
-            ghost.pos = move(ghost.digit, ghost.pos[0], ghost.pos[1], 0, -1);
-            break;
-        case "up":
-            //up
-            ghost.pos = move(ghost.digit, ghost.pos[0], ghost.pos[1], -1, 0);
-            break;
-        case "right":
-            //right
-            ghost.pos = move(ghost.digit, ghost.pos[0], ghost.pos[1], 0, 1);
-            break;
-        case "down":
-            //down
-            ghost.pos = move(ghost.digit, ghost.pos[0], ghost.pos[1], 1, 0);
-            break;
-    }
-}
 
 function eatGhost(x, y) {
     const ghostDigit = layout[x][y];
     let index = ghostDigit - 6;
     const start = ghosts[index].start;
     ghosts[index].pos = start;
+    getOut(ghosts[index]);
+
 }
 
 function gameover() {
-
+    clear();
     const imageGameOver = document.getElementsByClassName('gameover')[0];
     imageGameOver.style.height = '100vh';
     imageGameOver.style.width = '100vw';
-
-
-
 
     for (let i = 0; i < ghosts.length; i++) {
         clearInterval(ghostIntevals[i]);
     }
 }
 
-
-function addGhost(i) {
-
-}
-
 const ghostIntevals = new Array(ghosts.length).fill(0);
 for (let i = 0; i < ghosts.length; i++) {
     setTimeout(() => {
+        getOut(ghosts[i]);
         ghostIntevals[i] = setInterval(() => moveGhosts(i, ghosts[i]), ghostSpeed);
     }, 5000 * i)
 }
@@ -351,16 +319,108 @@ function getValccurrence(array, value1, value2) {
     return count - 1;
 }
 
-<<<<<<< HEAD
 function won() {
 
     if (getValccurrence(layout, 0, 3) === 0) {
         gameover();
-=======
-function won(){
-    
-    if(getValccurrence(layout,0,3) === 0 ){
-        gameover()
->>>>>>> 0090f9a4bcb923c07d266e8fbfafa5525da0fa79
     }
 }
+
+
+
+
+function randomDirection(x, y, i) {
+    const available = [];
+    if (layout[x][y + 1] !== 1 && layout[x][y + 1] < 6 && previousDirection[i] !== "left") available.push("right");
+    if (layout[x][y - 1] !== 1 && layout[x][y - 1] < 6 && previousDirection[i] !== "right") available.push("left");
+    if (layout[x - 1][y] !== 1 && layout[x - 1][y] < 6 && previousDirection[i] !== "down") available.push("up");
+    if (layout[x + 1][y] !== 1 && layout[x + 1][y] < 6 && previousDirection[i] !== "up") available.push("down");
+    console.log('available: ', available, "previous", previousDirection[i]);
+
+    const index = Math.floor(Math.random() * available.length);
+    return available[index];
+}
+
+function getOut(ghost) {
+    for (let i = 0; i < ghost.pathOut.length; i++) {
+        //for (movedirection of ghost.pathOut) {
+        console.log('ghost path move: ', ghost.pathOut[i]);
+        setTimeout(() => { moveOut(ghost, ghost.pathOut[i]) }, ghostSpeed)
+    }
+}
+
+
+function moveOut(ghost, direction) {
+    let addx = 0;
+    let addy = 0;
+    switch (direction) {
+        case "left":
+            addx = 0;
+            addy = -1;
+            break;
+        case "up":
+            addx = -1;
+            addy = 0;
+            break;
+        case "right":
+            addx = 0;
+            addy = 1;
+            break;
+        case "down":
+            addx = 1;
+            addy = 0;
+            break;
+    }
+
+    ghost.pos = move(ghost.digit, ghost.pos[0], ghost.pos[1], addx, addy);
+
+}
+
+
+
+function moveGhosts(i, ghost) {
+    let addx = 0;
+    let addy = 0;
+    switch (previousDirection[i]) {
+        case "left":
+            addx = 0;
+            addy = -1;
+            break;
+        case "up":
+            addx = -1;
+            addy = 0;
+            break;
+        case "right":
+            addx = 0;
+            addy = 1;
+            break;
+        case "down":
+            addx = 1;
+            addy = 0;
+            break;
+    }
+
+    if (layout[ghost.pos[0] + addx][ghost.pos[1] + addy] === 1 || layout[ghost.pos[0] + addx][ghost.pos[1] + addy] >= 6 || isIntersection(ghost.pos[0] + addx, ghost.pos[1] + addy)) {
+        previousDirection[i] = randomDirection(ghost.pos[0], ghost.pos[1], i);
+    } else if (layout[ghost.pos[0] + addx][ghost.pos[1] + addy] === 2) {
+        previousDirection[i] = "up";
+
+    }
+
+    ghost.pos = move(ghost.digit, ghost.pos[0], ghost.pos[1], addx, addy);
+
+
+}
+
+
+function isIntersection(x, y) {
+    console.log("intersection");
+    let count = 0;
+    if (layout[x][y + 1] !== 1) count++;
+    if (layout[x][y - 1] !== 1) count++;
+    if (layout[x + 1][y] !== 1) count++;
+    if (layout[x - 1][y] !== 1) count++;
+
+    return count > 2;
+}
+

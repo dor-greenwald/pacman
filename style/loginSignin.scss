@@ -25,17 +25,18 @@ h1 {
     box-sizing: border-box;
     border: 1px solid #000000;
     outline: none;
-    color:#000000
+    color: #000000
 }
-::placeholder{
-    color:black;
-    opacity:50%;
+
+::placeholder {
+    color: black;
+    opacity: 50%;
 }
 
 
 .textbox:focus {
     background-color: lightblue;
-    width:15vw;
+    width: 15vw;
 
 }
 
@@ -52,7 +53,7 @@ form {
     margin: 150px auto;
 
     img {
-        width: 80%;
+        width: 50%;
     }
 }
 
