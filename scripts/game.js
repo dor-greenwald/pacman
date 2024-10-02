@@ -41,6 +41,7 @@ let ghostSpeed = 500;
 let ghostDelay = 5000;
 let score = 0;
 let pacmanpos = [20, 12];
+let pacmanDirection = "right";
 let previousDirection = ["up", "up", "up", "up"];
 const NameThatLogged = localStorage.getItem("current user");
 let playerType = "pacman"
@@ -53,7 +54,7 @@ const ghosts = [{
 
 
 // document.body.addEventListener("keypress", (event) => movePacman(event, pacmanx, pacmany));
-document.onkeydown = (event) => moveElement(event, pacmanpos[0], pacmanpos[1]);
+document.onkeydown = (event) => movePacman(event, pacmanpos[0], pacmanpos[1]);
 document.getElementById("ms-pacman").addEventListener("click", () => { playerType = "mspacman" });
 document.getElementById("pacman").addEventListener("click", () => { playerType = "pacman" });
 
@@ -154,6 +155,10 @@ function buildCherry(i) {
 
 function buildPacman() {
     let pacman = document.createElement("img");
+    if (pacmanDirection === "left") pacman.style.transform = 'rotate(180deg)';
+    else if (pacmanDirection === "up") pacman.style.transform = 'rotate(-90deg)';
+    if (pacmanDirection === "down") pacman.style.transform = 'rotate(90deg)';
+
 
     pacman.src = `./../media/gif/${playerType}.gif`;
     pacman.classList.add(`${playerType}`);
@@ -170,30 +175,29 @@ function buildGhost(color, x, y) {
 }
 
 
-function moveElement(event, x, y) {
-    let player = document.getElementById("pacman-player");
+function movePacman(event, x, y) {
     switch (event.keyCode) {
         case 37:
             //left
-            // player.style.transform='rotate(180deg)'
+            pacmanDirection = "left";
             pacmanpos = move(5, x, y, 0, -1);
             break;
         case 38:
             //up
-            // player.style.transform='rotate(90deg)'
+            pacmanDirection = "up";
             pacmanpos = move(5, x, y, -1, 0);
 
             break;
         case 39:
             //right
+            pacmanDirection = "right";
             pacmanpos = move(5, x, y, 0, 1);
-            // player.style.transform='rotate(0deg)'
 
             break;
         case 40:
             //down
+            pacmanDirection = "down";
             pacmanpos = move(5, x, y, 1, 0);
-            // player.style.transform='rotate(-90deg)'
 
             break;
 
@@ -403,7 +407,7 @@ function moveGhosts(i, ghost) {
             break;
     }
 
-    if (layout[ghost.pos[0] + addx][ghost.pos[1] + addy] === 1 || layout[ghost.pos[0] + addx][ghost.pos[1] + addy] >= 6 || isIntersection(ghost.pos[0] + addx, ghost.pos[1] + addy)) {
+    if (layout[ghost.pos[0] + addx][ghost.pos[1] + addy] === 1 || layout[ghost.pos[0] + addx][ghost.pos[1] + addy] >= 6) {
         previousDirection[i] = randomDirection(ghost.pos[0], ghost.pos[1], i);
     } else if (layout[ghost.pos[0] + addx][ghost.pos[1] + addy] === 2) {
         previousDirection[i] = "up";
