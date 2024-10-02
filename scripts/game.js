@@ -39,6 +39,7 @@ const len = layout.length;
 let speed = 300;
 let ghostSpeed = 500;
 let ghostDelay = 5000;
+let canEatGhosts = false;
 let score = 0;
 let pacmanpos = [20, 12];
 let pacmanDirection = "right";
@@ -168,7 +169,10 @@ function buildPacman() {
     document.getElementById("game").appendChild(pacman);
 }
 
-function buildGhost(color, x, y) {
+function buildGhost(color) {
+    if (canEatGhosts) {
+        color = "blue";
+    }
     let ghost = document.createElement("img");
     ghost.src = `./../media/gif/ghost-${color}.gif`
     document.getElementById("game").appendChild(ghost);
@@ -216,13 +220,15 @@ function move(objDigit, x, y, addx, addy) {
     //check if colided
     switch (layout[objx][objy]) {
         case 0:
+            //point
             if (objDigit === 5) {
                 addToScore(5);
             }
-            won()
+            isWon()
             break;
 
         case 1:
+            //wall
             objx = x;
             objy = y;
             break;
@@ -231,27 +237,36 @@ function move(objDigit, x, y, addx, addy) {
         case 7:
         case 8:
         case 9:
+            //ghosts
             if (objDigit >= 6) {
                 objx = x;
                 objy = y;
             }
             else {
-                eatGhost(objx, objy);
                 if (objDigit === 5) {
-                    addToScore(500);
+                    if (canEatGhosts) {
+                        eatGhost(objx, objy);
+                        addToScore(500);
+                    }
+                    else gameover();
+
                 }
             }
             break;
 
         case 3:
+            //cherry
             if (objDigit === 5) {
                 addToScore(100);
+                canEatGhosts = true;
+                setTimeout(() => canEatGhosts = false, 10000) //can eat gosts for 10 seconds
             }
-            won()
+            isWon()
             break;
 
         case 5:
-            if (objDigit >= 6) {
+            //pacman
+            if (objDigit >= 6) { //if it is a ghost
                 gameover();
             }
 
@@ -333,7 +348,7 @@ function getValccurrence(array, value1, value2) {
     return count - 1;
 }
 
-function won() {
+function isWon() {
 
     if (getValccurrence(layout, 0, 3) === 0) {
         gameover();
